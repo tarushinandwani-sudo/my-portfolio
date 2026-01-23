@@ -44,6 +44,25 @@
             .experience-card { flex-direction: column; text-align: center; }
             .experience-img { width: 100%; height: auto; max-width: 300px; }
         }
+        nav {
+    display: flex;
+    justify-content: space-between; /* Pushes links to left and icons to right */
+    align-items: center;
+    padding: 20px 40px;
+    background: white;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-left { display: flex; gap: 20px; }
+
+.nav-socials { display: flex; gap: 15px; font-size: 1.2rem; }
+
+.nav-socials a { color: #555; transition: color 0.3s; }
+
+.nav-socials a:hover { color: #0070f3; } /* Changes to blue on hover */
     </style>
 </head>
 <body>
