@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarushi Nandwani | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
@@ -23,18 +23,21 @@
             line-height: 1.6;
         }
 
-        /* Navigation Bar Styling */
+        /* Fixed Navigation Bar Styling */
         nav {
-            padding: 20px;
+            padding: 20px 40px;
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            background: rgba(252, 252, 252, 0.8);
-            backdrop-filter: blur(10px);
+            justify-content: space-between; /* Pushes links left, socials right */
+            align-items: center;
+            background: white;
+            border-bottom: 1px solid #eee;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
+
+        .nav-left { display: flex; gap: 25px; }
+        .nav-socials { display: flex; gap: 18px; font-size: 1.2rem; }
 
         nav a {
             text-decoration: none;
@@ -44,9 +47,7 @@
             transition: color 0.3s;
         }
 
-        nav a:hover {
-            color: var(--accent-color);
-        }
+        nav a:hover { color: var(--accent-color); }
 
         .container {
             max-width: 600px;
@@ -77,7 +78,6 @@
             margin-bottom: 40px;
         }
 
-        /* Experience & Skills Section */
         section {
             text-align: left;
             margin-top: 60px;
@@ -101,7 +101,6 @@
             margin: 0 8px 10px 0;
         }
 
-        /* Contact Section */
         .contact-section {
             background: #f4f4f4;
             padding: 40px 20px;
@@ -114,7 +113,7 @@
             margin: 10px 15px;
             color: var(--accent-color);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         footer {
@@ -122,22 +121,27 @@
             font-size: 0.8rem;
             color: #999;
         }
+
+        @media (max-width: 600px) {
+            nav { padding: 20px; }
+            .nav-left { gap: 15px; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-    <div class="nav-left">
-        <a href="index.html">Home</a>
-        <a href="about.html">University Life</a>
-        <a href="about.html#news">In the News</a>
-    </div>
-    <div class="nav-socials">
-        <a href="https://www.linkedin.com/in/tarushi-nandwani/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="https://www.instagram.com/tarushinandwani/?hl=en" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://github.com/YOUR-GITHUB-USERNAME" target="_blank"><i class="fa-brands fa-github"></i></a>
-    </div>
-</nav>
+        <div class="nav-left">
+            <a href="index.html">Home</a>
+            <a href="about.html">University Life</a>
+            <a href="about.html#news">In the News</a>
+        </div>
+        <div class="nav-socials">
+            <a href="https://www.linkedin.com/in/tarushi-nandwani/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/tarushinandwani/?hl=en" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://github.com/tarushinandwani" target="_blank"><i class="fa-brands fa-github"></i></a>
+        </div>
+    </nav>
 
     <div class="container">
         <img src="me.jpg" alt="Tarushi Nandwani" class="profile-pic">
@@ -160,7 +164,7 @@
             <p>I am currently based in Sydney, Australia. Feel free to reach out for collaborations or opportunities.</p>
             <div class="contact-links">
                 <a href="mailto:tarushinandwani@gmail.com">Email Me</a>
-                <a href="https://linkedin.com">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/tarushi-nandwani/" target="_blank">LinkedIn</a>
             </div>
         </div>
 
