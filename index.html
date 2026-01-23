@@ -10,6 +10,7 @@
         :root { --bg-color: #fcfcfc; --text-color: #1a1a1a; --accent-color: #0070f3; --secondary-text: #666; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; line-height: 1.6; }
         
+        /* Navigation */
         nav {
             display: flex;
             justify-content: space-between;
@@ -29,44 +30,55 @@
         /* Banner Styling */
         .banner {
             width: 100%;
-            height: 200px;
-            background-image: url('banner.jpg'); /* Make sure to upload banner.jpg */
+            height: 250px;
+            background-image: url('unsw.jpg'); /* This uses your uploaded image */
             background-size: cover;
             background-position: center;
             border-bottom: 1px solid #eee;
         }
 
-        .container { max-width: 600px; margin: -65px auto 60px; padding: 0 20px; text-align: center; position: relative; }
+        /* Main Profile Container */
+        .container { 
+            max-width: 600px; 
+            margin: -75px auto 60px; /* Pulls the content up to overlap the banner */
+            padding: 0 20px; 
+            text-align: center; 
+            position: relative; 
+        }
         
         img.profile-pic { 
-            width: 130px; 
-            height: 130px; 
+            width: 140px; 
+            height: 140px; 
             border-radius: 50%; 
             object-fit: cover; 
-            border: 5px solid white; /* Creates a clean white border around the pic */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 6px solid white; /* Essential for the "floating" look */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
+        /* The Motto Styling */
         .motto {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--secondary-text);
             font-style: italic;
-            margin-top: 10px;
-            letter-spacing: 1px;
+            margin: 12px 0;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
-        h1 { font-size: 2.2rem; font-weight: 600; margin: 15px 0 8px; letter-spacing: -0.5px; }
+        h1 { font-size: 2.2rem; font-weight: 600; margin: 10px 0; letter-spacing: -0.5px; }
         .bio { font-size: 1.1rem; color: var(--secondary-text); margin-bottom: 40px; }
 
+        /* Experience & Skills Section */
         section { text-align: left; margin-top: 60px; border-top: 1px solid #eee; padding-top: 40px; }
         h3 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
         .skill-tag { display: inline-block; background: #f0f0f0; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; margin: 0 8px 10px 0; }
 
+        /* Contact Section */
         .contact-section { background: #f4f4f4; padding: 40px 20px; margin-top: 80px; border-radius: 12px; }
         .contact-links a { display: inline-block; margin: 10px 15px; color: var(--accent-color); text-decoration: none; font-weight: 600; }
+        
         footer { padding: 40px; font-size: 0.8rem; color: #999; }
-        @media (max-width: 600px) { nav { padding: 20px; } .nav-left { gap: 15px; } .banner { height: 150px; } }
+        @media (max-width: 600px) { nav { padding: 20px; } .nav-left { gap: 15px; } .banner { height: 180px; } .container { margin-top: -60px; } }
     </style>
 </head>
 <body>
@@ -91,27 +103,27 @@
         <p class="motto">Scientia Corde Manu et Mente</p>
 
         <h1>Tarushi Nandwani</h1>
-        <p class="bio">Bachelor of Data Science and Decisions student at UNSW Sydney[cite: 70, 71]. Passionate about supporting student life through communication and problem-solving[cite: 3].</p>
+        <p class="bio"> Hi, I’m Tara. I’m a philomath and autodidact with a love for strawberry matcha, almond croissants, and good conversations. Let’s chat!</p>
 
         <section>
             <h3>Core Skills</h3>
             <div class="skill-tags">
-                <span class="skill-tag">Conflict Resolution [cite: 16]</span>
-                <span class="skill-tag">Project Coordination [cite: 17]</span>
-                <span class="skill-tag">Strategic Planning [cite: 18]</span>
-                <span class="skill-tag">Interpersonal Skills [cite: 20]</span>
+                <span class="skill-tag">Conflict Resolution</span>
+                <span class="skill-tag">Project Coordination</span>
+                <span class="skill-tag">Strategic Planning</span>
+                <span class="skill-tag">Interpersonal Skills</span>
             </div>
         </section>
 
         <div id="contact" class="contact-section">
             <h3>Get in Touch</h3>
-            <p>I am currently based in Sydney, Australia[cite: 6]. Feel free to reach out for collaborations[cite: 8].</p>
+            <p>I am currently based in Sydney, Australia. Feel free to reach out for collaborations.</p>
             <div class="contact-links">
-                <a href="mailto:tarushinandwani@gmail.com">Email Me [cite: 8]</a>
-                <a href="https://www.linkedin.com/in/tarushi-nandwani/" target="_blank">LinkedIn [cite: 48]</a>
+                <a href="mailto:tarushinandwani@gmail.com">Email Me</a>
+                <a href="https://www.linkedin.com/in/tarushi-nandwani/" target="_blank">LinkedIn</a>
             </div>
         </div>
-        <footer>&copy; 2026 Tarushi Nandwani.</footer>
+        <footer>&copy; 2026 Tarushi Nandwani. Built with HTML & CSS on GitHub.</footer>
     </div>
 </body>
 </html>
