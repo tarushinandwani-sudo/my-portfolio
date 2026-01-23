@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tara | Portfolio</title>
+    <title>Tarushi Nandwani | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-color: #fcfcfc; /* A slightly off-white, softer on the eyes */
+            --bg-color: #fcfcfc;
             --text-color: #1a1a1a;
-            --accent-color: #0070f3; /* A clean digital blue */
+            --accent-color: #0070f3;
+            --secondary-text: #666;
         }
 
         body {
@@ -18,73 +19,146 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar Styling */
+        nav {
+            padding: 20px;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            line-height: 1.6;
+            gap: 30px;
+            background: rgba(252, 252, 252, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
         }
 
         .container {
             max-width: 600px;
-            padding: 40px;
+            margin: 60px auto;
+            padding: 0 20px;
             text-align: center;
         }
 
-        img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%; /* Makes it a circle */
+        img.profile-pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 20px;
-            border: 2px solid #eee;
+            margin-bottom: 25px;
+            border: 1px solid #eee;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 600;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
 
-        p {
+        .bio {
             font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 30px;
+            color: var(--secondary-text);
+            margin-bottom: 40px;
         }
 
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+        /* Experience & Skills Section */
+        section {
+            text-align: left;
+            margin-top: 60px;
+            border-top: 1px solid #eee;
+            padding-top: 40px;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 400;
-            border-bottom: 1px solid #ddd;
-            transition: all 0.3s ease; /* Makes the hover smooth */
+        h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
         }
 
-        .nav-links a:hover {
+        .skill-tag {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 0 8px 10px 0;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #f4f4f4;
+            padding: 40px 20px;
+            margin-top: 80px;
+            border-radius: 12px;
+        }
+
+        .contact-links a {
+            display: inline-block;
+            margin: 10px 15px;
             color: var(--accent-color);
-            border-bottom: 1px solid var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer {
+            padding: 40px;
+            font-size: 0.8rem;
+            color: #999;
         }
     </style>
 </head>
 <body>
 
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">University Life</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
     <div class="container">
-        <img src="me.jpg" alt="Tara">
+        <img src="me.jpg" alt="Tarushi Nandwani" class="profile-pic">
         
-        <h1>Tara</h1>
-        <p>Building things for the web. Currently exploring GitHub and modern design.</p>
-        
-        <div class="nav-links">
-            <a href="about.html">About</a>
-            <a href="https://github.com/YOUR-USERNAME">GitHub</a>
+        <h1>Tarushi Nandwani</h1>
+        <p class="bio">Bachelor of Data Science and Decisions student at UNSW Sydney. Passionate about supporting student life through communication and problem-solving.</p>
+
+        <section>
+            <h3>Core Skills</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Conflict Resolution</span>
+                <span class="skill-tag">Project Coordination</span>
+                <span class="skill-tag">Strategic Planning</span>
+                <span class="skill-tag">Interpersonal Skills</span>
             </div>
+        </section>
+
+        <div id="contact" class="contact-section">
+            <h3>Get in Touch</h3>
+            <p>I am currently based in Sydney, Australia. Feel free to reach out for collaborations or opportunities.</p>
+            <div class="contact-links">
+                <a href="mailto:tarushinandwani@gmail.com">Email Me</a>
+                <a href="https://linkedin.com">LinkedIn</a>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2026 Tarushi Nandwani. Built with HTML & CSS on GitHub.
+        </footer>
     </div>
 
 </body>
