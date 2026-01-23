@@ -8,137 +8,106 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; margin: 0; background: #fcfcfc; }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background: white;
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: white; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
+        .nav-left { display: flex; gap: 25px; }
+        .nav-socials { display: flex; gap: 18px; font-size: 1.2rem; }
         nav a { text-decoration: none; color: #1a1a1a; font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
         nav a:hover { color: #0070f3; }
-        .nav-left { display: flex; gap: 20px; }
-        .nav-socials { display: flex; gap: 15px; font-size: 1.2rem; }
-
+        
         .container { max-width: 850px; margin: 50px auto; padding: 20px; }
         h1 { font-weight: 600; margin-bottom: 40px; text-align: center; }
         
-        .experience-card { 
-            display: flex; 
-            gap: 30px; 
-            margin-bottom: 60px; 
-            align-items: center;
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        }
-
-        .experience-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 10px;
-            object-fit: cover;
-            flex-shrink: 0;
-            border: 1px solid #f0f0f0;
-        }
-
+        .experience-card { display: flex; gap: 30px; margin-bottom: 60px; align-items: center; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .experience-img { width: 200px; height: 200px; border-radius: 10px; object-fit: cover; flex-shrink: 0; border: 1px solid #f0f0f0; }
         .details h2 { font-size: 1.4rem; margin: 0; color: #0070f3; }
         .org { font-weight: 600; color: #444; margin: 5px 0; font-size: 1.1rem; }
         .date { font-size: 0.85rem; color: #888; margin-bottom: 12px; text-transform: uppercase; }
         .desc { font-size: 0.95rem; color: #555; }
 
-        @media (max-width: 700px) {
-            .experience-card { flex-direction: column; text-align: center; }
-            .experience-img { width: 100%; height: auto; max-width: 300px; }
-            nav { padding: 20px; }
-        }
+        @media (max-width: 700px) { .experience-card { flex-direction: column; text-align: center; } .experience-img { width: 100%; height: auto; max-width: 300px; } }
     </style>
 </head>
 <body>
-
-<nav>
-    <div class="nav-left">
-        <a href="index.html">Home</a>
-        <a href="about.html">University Life</a>
-        <a href="#news">In the News</a>
-    </div>
-    <div class="nav-socials">
-        <a href="https://www.linkedin.com/in/tarushi-nandwani/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="https://www.instagram.com/tarushinandwani/?hl=en" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://github.com/YOUR-GITHUB-USERNAME" target="_blank"><i class="fa-brands fa-github"></i></a>
-    </div>
-</nav>
-
-<div class="container">
-    <h1>University Life & Leadership</h1>
-
-    <div class="experience-card">
-        <img src="aisoc.jpg" alt="AISOC UNSW" class="experience-img">
-        <div class="details">
-            <h2>President</h2>
-            <p class="org">Artificial Intelligence Society (AISOC) UNSW</p>
-            <p class="date">Dec 2024 – Oct 2025</p>
-            <p class="desc">Led governance and organised the first flagship conference (AICON) for 200+ attendees[cite: 42, 44, 46].</p>
+    <nav>
+        <div class="nav-left">
+            <a href="index.html">Home</a>
+            <a href="about.html">University Life</a>
+            <a href="#news">In the News</a>
         </div>
-    </div>
-
-    <div class="experience-card">
-        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Women in Management" class="experience-img">
-        <div class="details">
-            <h2>Secretary</h2>
-            <p class="org">Women in Management Society at Sydney</p>
-            <p class="date">Oct 2025 – Present</p>
-            <p class="desc">Maintaining organizational records and administrative workflows for internal documentation[cite: 11, 13].</p>
+        <div class="nav-socials">
+            <a href="https://www.linkedin.com/in/tarushi-nandwani/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/tarushinandwani/?hl=en" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://github.com/tarushinandwani" target="_blank"><i class="fa-brands fa-github"></i></a>
         </div>
-    </div>
+    </nav>
 
-    <div class="experience-card">
-        <img src="uts.jpg" alt="UTS Indian Society" class="experience-img">
-        <div class="details">
-            <h2>Events Director</h2>
-            <p class="org">UTS Indian Society at Sydney</p>
-            <p class="date">Nov 2025 – Present</p>
-            <p class="desc">Planning flagship events, including the Desi Ball and cruise parties[cite: 22, 24, 27].</p>
-        </div>
-    </div>
+    <div class="container">
+        <h1>University Life & Leadership</h1>
 
-    <div class="experience-card">
-        <img src="tedx.jpg" alt="TEDx Event" class="experience-img">
-        <div class="details">
-            <h2>Vice Chairperson</h2>
-            <p class="org">TEDx ATLAS SkillTech University</p>
-            <p class="date">Jan 2023 – Aug 2023</p>
-            <p class="desc">Co-led the organization of the first independently organized TEDx event, "Lead with a Purpose"[cite: 62, 64].</p>
-        </div>
-    </div>
-
-    <section id="news" style="margin-top: 60px; border-top: 2px solid #eee; padding-top: 40px;">
-        <h2 style="font-size: 1.8rem; margin-bottom: 30px; text-align: center;">In the News</h2>
-        <div style="display: grid; gap: 20px;">
-            <div style="background: white; padding: 20px; border-radius: 10px; border-left: 5px solid #0070f3; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                <p style="margin: 0; font-size: 0.85rem; color: #888; text-transform: uppercase;">The Sydney Morning Herald</p>
-                <h4 style="margin: 10px 0;"><a href="https://www.smh.com.au/culture/books/students-are-using-ai-apps-to-summarise-whole-books-in-minutes-experts-are-alarmed-20250909-p5mto2.html" target="_blank" style="text-decoration: none; color: #1a1a1a;">Students are using AI apps to summarise whole books in minutes</a></h4>
-                <p style="margin: 0; font-size: 0.9rem; color: #555;">Featured discussing the impact of AI tools on academic learning and summarization.</p>
-            </div>
-            <div style="background: white; padding: 20px; border-radius: 10px; border-left: 5px solid #0070f3; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                <p style="margin: 0; font-size: 0.85rem; color: #888; text-transform: uppercase;">The Sydney Morning Herald</p>
-                <h4 style="margin: 10px 0;"><a href="https://www.smh.com.au/national/ai-smashed-the-job-prospects-of-these-sydney-students-this-is-how-they-re-fighting-back-20241014-p5ki19.html" target="_blank" style="text-decoration: none; color: #1a1a1a;">AI smashed the job prospects of these Sydney students: How they’re fighting back</a></h4>
-                <p style="margin: 0; font-size: 0.9rem; color: #555;">Discussing student resilience and the changing job landscape for Data Science students[cite: 70, 71].</p>
-            </div>
-            <div style="background: white; padding: 20px; border-radius: 10px; border-left: 5px solid #0070f3; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                <p style="margin: 0; font-size: 0.85rem; color: #888; text-transform: uppercase;">ATLAS SkillTech University</p>
-                <h4 style="margin: 10px 0;"><a href="https://atlasuniversity.edu.in/news/lead-with-purpose-unleashing-inspiration-at-atlas-skilltech-universitys-first-ever-tedx-event/" target="_blank" style="text-decoration: none; color: #1a1a1a;">Lead with a Purpose: Unleashing Inspiration at ATLAS SkillTech’s First TEDx</a></h4>
-                <p style="margin: 0; font-size: 0.9rem; color: #555;">Highlights from the TEDx event where I served as Vice Chairperson[cite: 62, 64].</p>
+        <div class="experience-card">
+            <img src="wim-logo.jpg" alt="Women in Management" class="experience-img">
+            <div class="details">
+                <h2>Secretary [cite: 11]</h2>
+                <p class="org">Women in Management Society at Sydney </p>
+                <p class="date">Oct 2025 – Present </p>
+                <p class="desc">Maintaining organizational records and administrative workflows for internal documentation. </p>
             </div>
         </div>
-    </section>
-</div>
 
+        <div class="experience-card">
+            <img src="uts.jpg" alt="UTS Indian Society" class="experience-img">
+            <div class="details">
+                <h2>Events Director [cite: 22]</h2>
+                <p class="org">UTS Indian Society at Sydney </p>
+                <p class="date">Nov 2025 – Present </p>
+                <p class="desc">Planning flagship events, including the Desi Ball and cruise parties. </p>
+            </div>
+        </div>
+
+        <div class="experience-card">
+            <img src="aisoc.jpg" alt="AISOC UNSW" class="experience-img">
+            <div class="details">
+                <h2>President [cite: 42]</h2>
+                <p class="org">Artificial Intelligence Society (AISOC) UNSW </p>
+                <p class="date">Dec 2024 – Oct 2025 </p>
+                <p class="desc">Founded and organised the first flagship conference (AICON) for 200+ attendees. </p>
+            </div>
+        </div>
+
+        <div class="experience-card">
+            <img src="tedx.jpg" alt="TEDx ATLAS" class="experience-img">
+            <div class="details">
+                <h2>Vice Chairperson </h2>
+                <p class="org">TEDx ATLAS SkillTech University </p>
+                <p class="date">Jan 2023 – Aug 2023 </p>
+                <p class="desc">Co-led the organization of the first independently organized TEDx event, "Lead with a Purpose". </p>
+            </div>
+        </div>
+
+        <section id="news" style="margin-top: 60px; border-top: 2px solid #eee; padding-top: 40px;">
+            <h2 style="font-size: 1.8rem; margin-bottom: 30px; text-align: center;">In the News</h2>
+            <div style="display: grid; gap: 20px;">
+                
+                <div style="background: white; padding: 20px; border-radius: 10px; border-left: 5px solid #0070f3; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <p style="margin: 0; font-size: 0.85rem; color: #888; text-transform: uppercase;">The Sydney Morning Herald</p>
+                    <h4 style="margin: 10px 0;"><a href="https://www.smh.com.au/culture/books/students-are-using-ai-apps-to-summarise-whole-books-in-minutes-experts-are-alarmed-20250909-p5mto2.html" target="_blank" style="text-decoration: none; color: #1a1a1a;">Students are using AI apps to summarise whole books in minutes</a></h4>
+                    <p style="margin: 0; font-size: 0.9rem; color: #555;">Featured as a student leader discussing AI impact on academic learning.</p>
+                </div>
+
+                <div style="background: white; padding: 20px; border-radius: 10px; border-left: 5px solid #0070f3; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <p style="margin: 0; font-size: 0.85rem; color: #888; text-transform: uppercase;">The Sydney Morning Herald</p>
+                    <h4 style="margin: 10px 0;"><a href="https://www.smh.com.au/national/ai-smashed-the-job-prospects-of-these-sydney-students-this-is-how-they-re-fighting-back-20241014-p5ki19.html" target="_blank" style="text-decoration: none; color: #1a1a1a;">AI smashed the job prospects of Sydney students</a></h4>
+                    <p style="margin: 0; font-size: 0.9rem; color: #555;">Discussing resilience and the changing job landscape for tech students.</p>
+                </div>
+
+                <div style="background: white; padding: 20px; border-radius: 10px; border-left: 5px solid #0070f3; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <p style="margin: 0; font-size: 0.85rem; color: #888; text-transform: uppercase;">ATLAS SkillTech University</p>
+                    <h4 style="margin: 10px 0;"><a href="https://atlasuniversity.edu.in/news/lead-with-a-purpose-unleashing-inspiration-at-atlas-skilltech-universitys-first-ever-tedx-event/" target="_blank" style="text-decoration: none; color: #1a1a1a;">Lead with a Purpose: ATLAS SkillTech’s First TEDx</a></h4>
+                    <p style="margin: 0; font-size: 0.9rem; color: #555;">Highlights from the TEDx event where I served as Vice Chairperson. </p>
+                </div>
+
+            </div>
+        </section>
+    </div>
 </body>
 </html>
