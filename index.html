@@ -1,16 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Tara's Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tara | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; }
-        h1 { color: #F8C8DC; }
+        :root {
+            --bg-color: #fcfcfc; /* A slightly off-white, softer on the eyes */
+            --text-color: #1a1a1a;
+            --accent-color: #0070f3; /* A clean digital blue */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%; /* Makes it a circle */
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 2px solid #eee;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 400;
+            border-bottom: 1px solid #ddd;
+            transition: all 0.3s ease; /* Makes the hover smooth */
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to Tara's Portfolio</h1>
-    <img src="me.jpg" alt="Photo of Tara" style="width:200px; border-radius: 50%;">
-    <p>This is my very first website hosted on GitHub!</p>
-    <a href="about.html">Learn more about me!</a>
+
+    <div class="container">
+        <img src="me.jpg" alt="Tara">
+        
+        <h1>Tara</h1>
+        <p>Building things for the web. Currently exploring GitHub and modern design.</p>
+        
+        <div class="nav-links">
+            <a href="about.html">About</a>
+            <a href="https://github.com/YOUR-USERNAME">GitHub</a>
+            </div>
+    </div>
+
 </body>
 </html>
