@@ -133,7 +133,7 @@
     }
 
     function deleteTask(event, index) {
-        event.stopPropagation(); // Prevents toggleTask from firing
+        event.stopPropagation(); // hopefully Prevents toggleTask from firing
         tasks.splice(index, 1);
         saveAndRender();
     }
