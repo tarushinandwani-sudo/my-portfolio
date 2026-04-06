@@ -3,46 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vinyl Player | Tarushi Nandwani</title>
+    <title>Discography | Tarushi Nandwani</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;600&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="//unpkg.com/three"></script>
     <script src="//unpkg.com/globe.gl"></script>
 
     <style>
-        :root { --deep-purple: #1a1a2e; --neon-purple: #6a5acd; --hot-pink: #d63384; }
-        body { margin: 0; font-family: 'Poppins', sans-serif; background: #050505; color: white; overflow-x: hidden; }
+        :root { --deep-bg: #050505; --soft-pink: #fff5f7; --accent-glow: rgba(255, 182, 193, 0.4); --d63384: #d63384; }
+        body { margin: 0; font-family: 'Poppins', sans-serif; background: var(--deep-bg); color: white; overflow-x: hidden; text-align: center; }
 
         .nav-back { position: fixed; top: 30px; left: 30px; z-index: 1000; text-decoration: none; color: white; font-size: 0.8rem; letter-spacing: 2px; }
 
-        /* VINYL PLAYER SECTION */
-        .player-zone { height: 45vh; display: flex; align-items: center; justify-content: center; flex-direction: column; padding-top: 40px; }
-        .turntable { width: 260px; height: 260px; background: #111; border-radius: 50%; border: 10px solid #222; position: relative; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 40px rgba(106, 90, 205, 0.2); }
-        .needle { position: absolute; top: -10px; right: -30px; width: 110px; height: 8px; background: #444; transform-origin: left; transform: rotate(45deg); transition: 0.5s; z-index: 10; }
+        /* THE VINYL PLAYER ZONE */
+        .player-zone {
+            height: 45vh; display: flex; align-items: center; justify-content: center;
+            flex-direction: column; padding-top: 40px; position: relative;
+        }
+        .turntable {
+            width: 250px; height: 250px; background: #111; border-radius: 50%;
+            border: 8px solid #222; position: relative; display: flex; align-items: center; justify-content: center;
+        }
+        .needle {
+            position: absolute; top: -10px; right: -30px; width: 100px; height: 8px;
+            background: #444; transform-origin: left; transform: rotate(45deg); transition: 0.5s; z-index: 10;
+        }
+        @keyframes spin { from {transform:rotate(0deg);} to {transform:rotate(360deg);} }
 
-        /* THE CRATE */
-        .crate { display: flex; overflow-x: auto; padding: 40px; gap: 35px; scrollbar-width: none; }
-        .crate::-webkit-scrollbar { display: none; }
-        .vinyl-item { text-align: center; cursor: pointer; transition: 0.3s; min-width: 160px; }
+        /* THE VINYL CRATE GRID (NEW 3X2 GRID) */
+        .crate {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 Columns */
+            gap: 50px 30px; /* Separates the rows/columns */
+            max-width: 900px; margin: 40px auto 60px; padding: 0 40px;
+        }
+
+        .vinyl-item { text-align: center; cursor: pointer; transition: 0.3s; }
         .vinyl-item:hover { transform: translateY(-15px); }
-        .record { width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, #222 0%, #000 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.6); border: 1px solid #333; }
-        .label { width: 60px; height: 60px; border-radius: 50%; border: 1px solid #111; }
 
-        /* MODALS */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 25, 0.96); backdrop-filter: blur(20px); z-index: 2000; }
-        .close-btn { position: fixed; top: 30px; right: 30px; font-size: 2.5rem; cursor: pointer; color: white; z-index: 3000; }
+        .record {
+            width: 160px; height: 160px; border-radius: 50%;
+            background: radial-gradient(circle, #222 0%, #000 100%);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6); border: 2px solid #333;
+            margin: 0 auto; transition: 0.4s ease;
+        }
+        .label { width: 55px; height: 55px; border-radius: 50%; border: 1px solid #111; }
 
-        /* SCATTERED POLAROIDS */
-        .scrapbook-container { display: flex; flex-wrap: wrap; justify-content: center; padding: 100px 40px; gap: 30px; }
-        .polaroid { background: white; padding: 15px 15px 45px 15px; width: 230px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); color: #333; transition: 0.3s; }
+        /* THE HOVER GLOW FIX */
+        .vinyl-item:hover .record { box-shadow: 0 0 25px var(--accent-glow); }
+
+        .vinyl-item h3 { font-family: 'Playfair Display'; margin: 15px 0 5px; font-size: 1.2rem; }
+        .vinyl-item p.subtitle { font-size: 0.75rem; color: #888; text-transform: uppercase; margin: 0; letter-spacing: 1px; }
+
+        /* Modals & Scrapbook & Globe & Music Bar Stay the Same... */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px); z-index: 2000; }
+        .scrapbook-container { display: flex; flex-wrap: wrap; justify-content: center; padding: 100px 20px; gap: 30px; }
+        
+        .polaroid {
+            background: white; padding: 15px 15px 45px 15px; width: 220px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3); transform: rotate(-2deg); color: #333; transition: 0.3s;
+        }
         .polaroid img { width: 100%; aspect-ratio: 1/1; object-fit: cover; margin-bottom: 15px; }
-        .polaroid p { font-family: 'Caveat', cursive; font-size: 1.3rem; text-align: center; margin: 0; }
-        .polaroid:hover { transform: scale(1.1) rotate(0deg) !important; z-index: 10; }
+        .polaroid p { font-family: 'Caveat', cursive; font-size: 1.2rem; margin: 0; line-height: 1.2; text-align: center; }
+        .polaroid:hover { transform: rotate(0deg) scale(1.1); z-index: 10; }
 
+        .close-btn { position: fixed; top: 30px; right: 30px; font-size: 2.5rem; cursor: pointer; color: white; z-index: 3000; }
         #globeViz { width: 100%; height: 100vh; }
-        .music-bar { position: fixed; bottom: 20px; right: 20px; width: 300px; border-radius: 12px; overflow: hidden; z-index: 1500; }
+        .music-bar { position: fixed; bottom: 30px; right: 30px; width: 300px; border-radius: 12px; overflow: hidden; z-index: 1500; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
@@ -52,104 +83,39 @@
     <div class="player-zone">
         <div class="turntable">
             <div class="needle" id="needle"></div>
-            <div id="playing-record" class="record" style="width: 230px; height: 230px; display:none; animation: spin 3s linear infinite;">
+            <div id="playing-record" class="record" style="width: 220px; height: 220px; display:none; animation: spin 3s linear infinite; box-shadow: 0 0 30px var(--accent-glow);">
                 <div class="label" id="playing-label"></div>
             </div>
         </div>
-        <h2 id="now-playing" style="font-family:'Playfair Display'; margin-top:25px; letter-spacing: 2px;">Vinyl Player</h2>
+        <h2 id="now-playing" style="font-family:'Playfair Display'; margin-top:25px; letter-spacing: 2px;">Pick a Vinyl</h2>
     </div>
 
     <div class="crate">
         <div class="vinyl-item" onclick="playRecord('The Person', '#ffb6c1', 'scrapbook')">
             <div class="record"><div class="label" style="background:#ffb6c1;"></div></div>
-            <p>The Person</p>
+            <h3>The Person</h3><p class="subtitle">A Digital Diary</p>
         </div>
-        <div class="vinyl-item" onclick="playRecord('World Tour', '#6a5acd', 'globe')">
+        <div class="vinyl-item">
             <div class="record"><div class="label" style="background:#6a5acd;"></div></div>
-            <p>World Tour</p>
+            <h3>Midnights</h3><p class="subtitle">YEAR 2: UNSW Leadership</p>
         </div>
-        <div class="vinyl-item" onclick="window.location.href='about.html'">
-            <div class="record"><div class="label" style="background:#444;"></div></div>
-            <p>University</p>
-        </div>
-        <div class="vinyl-item" onclick="playRecord('The Anthology', '#d63384', 'simple')">
-            <div class="record"><div class="label" style="background:#d63384;"></div></div>
-            <p>The Anthology</p>
-        </div>
-        <div class="vinyl-item" onclick="playRecord('Midnights', '#483d8b', 'simple')">
+        <div class="vinyl-item">
             <div class="record"><div class="label" style="background:#483d8b;"></div></div>
-            <p>Midnights</p>
+            <h3>Visions</h3><p class="subtitle">YEAR 3: Current Mission</p>
         </div>
-        <div class="vinyl-item" onclick="playRecord('Visions', '#9370db', 'simple')">
-            <div class="record"><div class="label" style="background:#9370db;"></div></div>
-            <p>Visions</p>
+        <div class="vinyl-item" onclick="playRecord('World Tour', '#d63384', 'globe')">
+            <div class="record"><div class="label" style="background:#d63384;"></div></div>
+            <h3>World Tour</h3><p class="subtitle">Travels & Roots</p>
         </div>
+        <a href="about.html" class="vinyl-item" style="text-decoration: none; color: inherit;">
+            <div class="record"><div class="label" style="background:#444;"></div></div>
+            <h3>UNSW Life</h3><p class="subtitle">The Timeline</p>
+        </a>
+        <a href="about.html#news" class="vinyl-item" style="text-decoration: none; color: inherit;">
+            <div class="record"><div class="label" style="background:#1a1a1a;"></div></div>
+            <h3>Headlines</h3><p class="subtitle">In The Media</p>
+        </a>
     </div>
 
-    <div id="scrapbookModal" class="modal">
-        <span class="close-btn" onclick="closeModal('scrapbookModal')">×</span>
-        <div class="scrapbook-container">
-            <div class="polaroid" style="transform:rotate(-3deg)"><img src="me2.jpg"><p>Hi! I'm Tarushi, but you can call me Tara too!</p></div>
-            <div class="polaroid" style="transform:rotate(4deg)"><img src="unsw.jpg"><p>My second home @ UNSW Sydney!</p></div>
-            <div class="polaroid" style="transform:rotate(-2deg)"><img src="matcha.jpg"><p>Current Era: Matcha & Croissants.</p></div>
-            <div class="polaroid" style="transform:rotate(5deg)"><img src="besties.jpg"><p>The besties who make it all special!</p></div>
-        </div>
-    </div>
-
-    <div id="worldTourModal" class="modal" style="background: var(--deep-purple);">
-        <span class="close-btn" onclick="closeModal('worldTourModal')">×</span>
-        <div id="globeViz"></div>
-    </div>
-
-    <div class="music-bar">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6sGIMrtIzQjdzNndVxe397?utm_source=generator" width="100%" height="80" frameBorder="0" allow="autoplay; encrypted-media;"></iframe>
-    </div>
-
-    <script>
-        function playRecord(name, color, type) {
-            document.getElementById('needle').style.transform = 'rotate(15deg)';
-            const pr = document.getElementById('playing-record');
-            pr.style.display = 'flex';
-            document.getElementById('playing-label').style.background = color;
-            document.getElementById('now-playing').innerText = "Now Playing: " + name;
-
-            setTimeout(() => {
-                if(type === 'scrapbook') openModal('scrapbookModal');
-                if(type === 'globe') openModal('worldTourModal');
-            }, 800);
-        }
-
-        function openModal(id) { 
-            document.getElementById(id).style.display = 'block'; 
-            if(id === 'worldTourModal') setTimeout(initGlobe, 100);
-        }
-        function closeModal(id) { 
-            document.getElementById(id).style.display = 'none'; 
-            document.getElementById('needle').style.transform = 'rotate(45deg)';
-            document.getElementById('playing-record').style.display = 'none';
-        }
-
-        function initGlobe() {
-            const places = [
-                { lat: 20.59, lng: 78.96, name: 'India', desc: 'Raised here — my childhood & high school roots.' },
-                { lat: 24.45, lng: 54.37, name: 'UAE', desc: 'Born here — where the journey began!' },
-                { lat: -33.86, lng: 151.20, name: 'Sydney', desc: "Currently based here — pursuing Data Science @ UNSW." }
-            ];
-            const world = Globe()(document.getElementById('globeViz'))
-                .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
-                .backgroundColor('rgba(0,0,0,0)')
-                .pointsData(places)
-                .pointColor(() => '#d63384')
-                .pointRadius(0.7)
-                .pointLabel(d => `<div style="background:rgba(0,0,0,0.8); padding:12px; border-radius:10px; border:1px solid #6a5acd; font-family:Poppins; min-width:200px;"><b>${d.name}</b><br>${d.desc}</div>`)
-                .autoRotate(true).autoRotateSpeed(1.5)(document.getElementById('globeViz'));
-            
-            const mat = world.globeMaterial();
-            mat.color = new THREE.Color('#1a1a2e');
-            mat.emissive = new THREE.Color('#483d8b');
-            mat.emissiveIntensity = 0.2;
-        }
-    </script>
-    <style> @keyframes spin { from {transform:rotate(0deg);} to {transform:rotate(360deg);} } </style>
-</body>
+    </body>
 </html>
