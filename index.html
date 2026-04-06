@@ -9,10 +9,12 @@
     <style>
         :root { --bg-color: #fcfcfc; --text-color: #1a1a1a; --accent-color: #0070f3; --secondary-text: #666; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; line-height: 1.6; }
+        
+        /* Nav Restoration */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: white; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
         .nav-left { display: flex; gap: 25px; }
         .nav-socials { display: flex; gap: 18px; font-size: 1.2rem; }
-        nav a { text-decoration: none; color: var(--text-color); font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
+        nav a { text-decoration: none; color: var(--text-color); font-weight: 500; font-size: 0.9rem; transition: 0.3s; }
         nav a:hover { color: #6a5acd; }
 
         .banner { width: 100%; height: 250px; background-image: url('unsw.jpg'); background-size: cover; background-position: center; border-bottom: 1px solid #eee; }
@@ -22,7 +24,7 @@
         h1 { font-size: 2.2rem; font-weight: 600; margin: 10px 0; }
         .bio { font-size: 1.1rem; color: var(--secondary-text); margin-bottom: 40px; }
 
-        /* THE UPDATED PORTAL BUTTON */
+        /* PORTAL BUTTON */
         .play-btn { 
             display: inline-block; background: #111; color: white; padding: 12px 30px; border-radius: 50px; 
             text-decoration: none; font-weight: 600; margin-bottom: 40px; transition: 0.4s ease; 
@@ -35,12 +37,18 @@
 
         section { text-align: left; margin-top: 60px; border-top: 1px solid #eee; padding-top: 40px; }
         h3 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+        
         .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .project-card { background: white; border: 1px solid #eee; padding: 20px; border-radius: 12px; text-align: left; transition: transform 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; }
         .project-card:hover { transform: translateY(-5px); border-color: #6a5acd; }
+        
         .tag { font-size: 0.7rem; background: #f0f4f8; color: #476a8a; padding: 4px 8px; border-radius: 4px; font-weight: 600; margin-right: 5px; }
-        .project-link { text-decoration: none; font-size: 0.85rem; color: var(--accent-color); font-weight: 600; }
         .skill-tag { display: inline-block; background: #f0f0f0; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; margin: 0 8px 10px 0; }
+        
+        /* CONTACT SECTION */
+        .contact-info { margin-top: 40px; padding: 20px; background: #f9f9f9; border-radius: 12px; text-align: center; }
+        .contact-info a { color: var(--accent-color); text-decoration: none; font-weight: 600; }
+
         footer { padding: 40px; font-size: 0.8rem; color: #999; }
         @media (max-width: 600px) { .project-grid { grid-template-columns: 1fr; } }
     </style>
@@ -50,16 +58,18 @@
         <div class="nav-left">
             <a href="index.html">Home</a>
             <a href="about.html">University Life</a>
-            <a href="fun.html">Discography</a>
+            <a href="fun.html">Vinyl Player</a>
             <a href="about.html#news">In the News</a>
         </div>
         <div class="nav-socials">
             <a href="https://www.linkedin.com/in/tarushi-nandwani/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="https://www.instagram.com/tarushinandwani/?hl=en" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.instagram.com/tarushinandwani/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
             <a href="https://github.com/tarushinandwani-sudo" target="_blank"><i class="fa-brands fa-github"></i></a>
         </div>
     </nav>
+
     <div class="banner"></div>
+
     <div class="container">
         <img src="me2.jpg" alt="Tarushi Nandwani" class="profile-pic">
         <p class="motto">Scientia Corde Manu et Mente</p>
@@ -77,17 +87,17 @@
                     <div>
                         <h4>Personal Portfolio</h4>
                         <p>A responsive professional website built with HTML5 and CSS3 to showcase my journey in Data Science and leadership.</p>
-                        <div class="tag-row"><span class="tag">HTML/CSS</span><span class="tag">GitHub Pages</span></div>
+                        <div class="tag-row"><span class="tag">HTML/CSS</span></div>
                     </div>
-                    <a href="https://github.com/tarushinandwani-sudo" target="_blank" class="project-link">View Code ↗</a>
+                    <a href="https://github.com/tarushinandwani-sudo" target="_blank" style="text-decoration:none; color:var(--accent-color); font-size:0.85rem; font-weight:600;">View Code ↗</a>
                 </div>
                 <div class="project-card">
                     <div>
                         <h4>Productivity Engine</h4>
-                        <p>A custom-built tool I use daily to manage my coursework, society roles, and internship applications.</p>
-                        <div class="tag-row"><span class="tag">JavaScript</span><span class="tag">LocalStorage</span></div>
+                        <p>A custom-built tool I use daily to manage my coursework and society roles.</p>
+                        <div class="tag-row"><span class="tag">JavaScript</span></div>
                     </div>
-                    <a href="todo.html" class="project-link">Open My Tracker ↗</a>
+                    <a href="todo.html" style="text-decoration:none; color:var(--accent-color); font-size:0.85rem; font-weight:600;">Open My Tracker ↗</a>
                 </div>
             </div>
         </section>
@@ -106,7 +116,12 @@
             </div>
         </section>
 
-        <footer>&copy; 2026 Tarushi Nandwani. Built with HTML & CSS on GitHub.</footer>
+        <section class="contact-info">
+            <h3>Let's Connect</h3>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:tarushinandwani@gmail.com">tarushinandwani@gmail.com</a></p>
+            <p><i class="fas fa-phone"></i> +61 4XX XXX XXX</p> </section>
+
+        <footer>© 2026 Tarushi Nandwani. Built with HTML & CSS on GitHub.</footer>
     </div>
 </body>
 </html>
