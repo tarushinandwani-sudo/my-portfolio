@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,84 +9,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; margin: 0; background: #fcfcfc; }
-        
         nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: white; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
         .nav-left { display: flex; gap: 25px; }
         .nav-socials { display: flex; gap: 18px; font-size: 1.2rem; }
         nav a { text-decoration: none; color: #1a1a1a; font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
         nav a:hover { color: #0070f3; }
-        
         .container { max-width: 850px; margin: 50px auto; padding: 20px; }
-        h1 { font-weight: 600; margin-bottom: 50px; text-align: center; font-size: 2.2rem; }
+        h1 { font-weight: 600; margin-bottom: 40px; text-align: center; }
 
         .timeline { position: relative; padding: 20px 0; }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 31px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #e0e0e0;
-        }
-
+        .timeline::before { content: ''; position: absolute; left: 31px; top: 0; bottom: 0; width: 2px; background: #e0e0e0; }
         .milestone { position: relative; margin-bottom: 40px; padding-left: 80px; }
-        
-        .dot {
-            position: absolute;
-            left: 22px;
-            top: 10px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: white;
-            border: 4px solid #0070f3;
-            z-index: 2;
-        }
-
-        .timeline-card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid #eee;
-            display: flex;
-            gap: 25px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        }
-
-        .timeline-card:hover {
-            transform: translateX(10px);
-            border-color: #0070f3;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
-
-        .timeline-img { width: 130px; height: 130px; border-radius: 12px; object-fit: cover; flex-shrink: 0; border: 1px solid #f0f0f0; }
-
-        .status-tag {
-            font-size: 0.7rem;
-            padding: 3px 10px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-        .active { background: #e3f2fd; color: #0070f3; }
-        .past { background: #f5f5f5; color: #757575; }
-
-        .details h2 { font-size: 1.3rem; margin: 0; color: #1a1a1a; }
-        .org { font-weight: 600; color: #0070f3; margin: 5px 0; font-size: 1.05rem; }
-        .date { font-size: 0.85rem; color: #888; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .desc { font-size: 0.95rem; color: #555; }
-
-        @media (max-width: 700px) {
-            .timeline-card { flex-direction: column; align-items: center; text-align: center; }
-            .timeline::before { left: 50%; }
-            .dot { left: calc(50% - 10px); }
-            .milestone { padding-left: 0; padding-top: 30px; }
-            .timeline-img { width: 100%; max-width: 200px; height: auto; }
-        }
+        .dot { position: absolute; left: 22px; top: 10px; width: 16px; height: 16px; border-radius: 50%; background: white; border: 4px solid #0070f3; z-index: 2; }
+        .timeline-card { background: white; padding: 25px; border-radius: 15px; border: 1px solid #eee; display: flex; gap: 25px; transition: 0.3s; }
+        .timeline-card:hover { transform: translateX(10px); border-color: #0070f3; }
+        .timeline-img { width: 100px; height: 100px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
+        .details h2 { font-size: 1.2rem; margin: 0; color: #1a1a1a; }
+        .org { font-weight: 600; color: #0070f3; margin: 2px 0; }
+        .date { font-size: 0.85rem; color: #888; margin-bottom: 10px; text-transform: uppercase; }
+        .desc { font-size: 0.9rem; color: #555; }
     </style>
 </head>
 <body>
@@ -101,22 +43,18 @@
             <a href="https://github.com/tarushinandwani-sudo" target="_blank"><i class="fa-brands fa-github"></i></a>
         </div>
     </nav>
-
     <div class="container">
-        <h1>Leadership & University Journey</h1>
-
+        <h1>University Life & Leadership</h1>
         <div class="timeline">
-
             <div class="milestone">
                 <div class="dot"></div>
                 <div class="timeline-card">
                     <img src="founders.jpg" alt="UNSW Founders" class="timeline-img">
                     <div class="details">
-                        <span class="status-tag active">Active</span>
                         <h2>Student Ambassador</h2>
                         <p class="org">UNSW Founders</p>
-                        <p class="date">2026 – Present</p>
-                        <p class="desc">Promoting entrepreneurship and supporting the startup ecosystem at UNSW.</p>
+                        <p class="date">2026</p>
+                        <p class="desc">Promoting entrepreneurship and the startup ecosystem at UNSW.</p>
                     </div>
                 </div>
             </div>
@@ -126,11 +64,10 @@
                 <div class="timeline-card">
                     <img src="unsw_indian.jpg" alt="UNSW Indian Society" class="timeline-img">
                     <div class="details">
-                        <span class="status-tag active">Active</span>
                         <h2>Secretary</h2>
                         <p class="org">UNSW Indian Society</p>
-                        <p class="date">2026 – Present</p>
-                        <p class="desc">Managing governance and administrative workflows for the cultural society.</p>
+                        <p class="date">2026</p>
+                        <p class="desc">Managing administrative operations for the UNSW Indian cultural community.</p>
                     </div>
                 </div>
             </div>
@@ -138,13 +75,12 @@
             <div class="milestone">
                 <div class="dot"></div>
                 <div class="timeline-card">
-                    <img src="wim.jpg" alt="Women in Management" class="timeline-img">
+                    <img src="wim.jpg" alt="WIM Society" class="timeline-img">
                     <div class="details">
-                        <span class="status-tag active">Active</span>
                         <h2>Secretary</h2>
                         <p class="org">Women in Management Society</p>
-                        <p class="date">2025 – Present</p>
-                        <p class="desc">Maintaining organizational records and documentation for the management society.</p>
+                        <p class="date">2026</p>
+                        <p class="desc">Managing records and workflows for the WIM Society.</p>
                     </div>
                 </div>
             </div>
@@ -154,11 +90,23 @@
                 <div class="timeline-card">
                     <img src="uts.jpg" alt="UTS Indian Society" class="timeline-img">
                     <div class="details">
-                        <span class="status-tag past">Completed</span>
-                        <h2>Events Director (Promoted)</h2>
+                        <h2>Events Director</h2>
                         <p class="org">UTS Indian Society</p>
                         <p class="date">Nov 2025 – April 2026</p>
-                        <p class="desc">Led the planning and execution of flagship events like the Desi Ball and harbour cruises.</p>
+                        <p class="desc">Planned and executed major events, including Desi Ball and harbour cruises.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="timeline-card">
+                    <img src="uts.jpg" alt="UTS Indian Society" class="timeline-img">
+                    <div class="details">
+                        <h2>Events Coordinator</h2>
+                        <p class="org">UTS Indian Society</p>
+                        <p class="date">2025</p>
+                        <p class="desc">Supported the execution of diverse cultural society events.</p>
                     </div>
                 </div>
             </div>
@@ -168,7 +116,6 @@
                 <div class="timeline-card">
                     <img src="aisoc.jpg" alt="AISOC UNSW" class="timeline-img">
                     <div class="details">
-                        <span class="status-tag past">Completed</span>
                         <h2>President</h2>
                         <p class="org">Artificial Intelligence Society (AISOC) UNSW</p>
                         <p class="date">Dec 2024 – Oct 2025</p>
@@ -180,13 +127,25 @@
             <div class="milestone">
                 <div class="dot"></div>
                 <div class="timeline-card">
-                    <img src="wit.jpg" alt="WIT UNSW" class="timeline-img">
+                    <img src="aisoc_pr.jpg" alt="AISOC PR" class="timeline-img">
                     <div class="details">
-                        <span class="status-tag past">Completed</span>
-                        <h2>PR Director & Careers Subcom</h2>
-                        <p class="org">AISOC & Women in Technology (WIT) UNSW</p>
+                        <h2>Public Relations Director</h2>
+                        <p class="org">Artificial Intelligence Society (AISOC) UNSW</p>
                         <p class="date">2024</p>
-                        <p class="desc">Managed public relations for AISOC and served on the Careers subcommittee for WIT.</p>
+                        <p class="desc">Led communication strategies and brand management for AISOC.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="timeline-card">
+                    <img src="wit.jpg" alt="WIT Careers" class="timeline-img">
+                    <div class="details">
+                        <h2>Careers Subcommittee</h2>
+                        <p class="org">Women in Technology (WIT) UNSW</p>
+                        <p class="date">2024</p>
+                        <p class="desc">Assisted in career-focused initiatives for women in the technology sector.</p>
                     </div>
                 </div>
             </div>
@@ -196,30 +155,33 @@
                 <div class="timeline-card">
                     <img src="tedx.jpg" alt="TEDx ATLAS" class="timeline-img">
                     <div class="details">
-                        <span class="status-tag past">Completed</span>
                         <h2>Vice Chairperson</h2>
                         <p class="org">TEDx ATLAS SkillTech University</p>
                         <p class="date">Jan 2023 – Aug 2023</p>
-                        <p class="desc">Co-led the organization of the first independently organized TEDx event, "Lead with a Purpose".</p>
+                        <p class="desc">Co-led the organisation of the inaugural TEDx event, "Lead with a Purpose".</p>
                     </div>
                 </div>
             </div>
-
         </div>
 
-        <section id="news" style="margin-top: 80px; border-top: 2px solid #eee; padding-top: 40px;">
-            <h2 style="font-size: 1.8rem; margin-bottom: 30px; text-align: center;">In the News</h2>
+        <section id="news" style="margin-top: 60px; border-top: 2px solid #eee; padding-top: 40px;">
+            <h2 style="text-align: center;">In the News</h2>
             <div style="display: grid; gap: 20px;">
-                <div style="background: white; padding: 20px; border-radius: 10px; border-left: 5px solid #0070f3; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                    <p style="margin: 0; font-size: 0.85rem; color: #888; text-transform: uppercase;">The Sydney Morning Herald</p>
+                <div style="padding: 20px; border-left: 5px solid #0070f3; background: white; border-radius: 10px;">
+                    <p style="margin: 0; font-size: 0.85rem; color: #888;">The Sydney Morning Herald</p>
                     <h4 style="margin: 10px 0;"><a href="https://www.smh.com.au/culture/books/students-are-using-ai-apps-to-summarise-whole-books-in-minutes-experts-are-alarmed-20250909-p5mto2.html" target="_blank" style="text-decoration: none; color: #1a1a1a;">Students are using AI apps to summarise whole books ↗</a></h4>
                 </div>
-                <div style="background: white; padding: 20px; border-radius: 10px; border-left: 5px solid #0070f3; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                    <p style="margin: 0; font-size: 0.85rem; color: #888; text-transform: uppercase;">The Sydney Morning Herald</p>
+                <div style="padding: 20px; border-left: 5px solid #0070f3; background: white; border-radius: 10px;">
+                    <p style="margin: 0; font-size: 0.85rem; color: #888;">The Sydney Morning Herald</p>
                     <h4 style="margin: 10px 0;"><a href="https://www.smh.com.au/national/ai-smashed-the-job-prospects-of-these-sydney-students-this-is-how-they-re-fighting-back-20241014-p5ki19.html" target="_blank" style="text-decoration: none; color: #1a1a1a;">AI smashed the job prospects of Sydney students ↗</a></h4>
+                </div>
+                <div style="padding: 20px; border-left: 5px solid #0070f3; background: white; border-radius: 10px;">
+                    <p style="margin: 0; font-size: 0.85rem; color: #888;">ATLAS SkillTech University</p>
+                    <h4 style="margin: 10px 0;"><a href="https://atlasuniversity.edu.in/news/lead-with-a-purpose-unleashing-inspiration-at-atlas-skilltech-universitys-first-ever-tedx-event/" target="_blank" style="text-decoration: none; color: #1a1a1a;">Lead with a Purpose: ATLAS SkillTech’s First TEDx ↗</a></h4>
                 </div>
             </div>
         </section>
     </div>
 </body>
 </html>
+```
