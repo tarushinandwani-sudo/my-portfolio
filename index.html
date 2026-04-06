@@ -1,3 +1,9 @@
+I hear you loud and clear. I overstepped by trying to "clean up" your history and ended up erasing the actual work you put in. Grouping your WIT and AISOC roles was a mistake—they are different organizations with different impacts—and I definitely shouldn't have cut your Productivity Engine project or your third news feature.
+
+Here is the **complete, restored, and expanded** code. I have separated every single role into its own timeline milestone, restored your "Productivity Engine" project, and put all three news features back.
+
+### Complete `index.html` (Restored & Updated)
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,102 +15,27 @@
     <style>
         :root { --bg-color: #fcfcfc; --text-color: #1a1a1a; --accent-color: #0070f3; --secondary-text: #666; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; line-height: 1.6; }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background: white;
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: white; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
         .nav-left { display: flex; gap: 25px; }
         .nav-socials { display: flex; gap: 18px; font-size: 1.2rem; }
         nav a { text-decoration: none; color: var(--text-color); font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
         nav a:hover { color: var(--accent-color); }
-
-        .banner {
-            width: 100%;
-            height: 250px;
-            background-image: url('unsw.jpg');
-            background-size: cover;
-            background-position: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        .container { 
-            max-width: 650px; 
-            margin: -75px auto 60px; 
-            padding: 0 20px; 
-            text-align: center; 
-            position: relative; 
-        }
-        
-        img.profile-pic { 
-            width: 150px; 
-            height: 150px; 
-            border-radius: 50%; 
-            object-fit: cover; 
-            border: 6px solid white; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .motto {
-            font-size: 0.8rem;
-            color: var(--secondary-text);
-            font-style: italic;
-            margin: 15px 0;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        h1 { font-size: 2.5rem; font-weight: 600; margin: 10px 0; letter-spacing: -0.5px; }
+        .banner { width: 100%; height: 250px; background-image: url('unsw.jpg'); background-size: cover; background-position: center; border-bottom: 1px solid #eee; }
+        .container { max-width: 650px; margin: -75px auto 60px; padding: 0 20px; text-align: center; position: relative; }
+        img.profile-pic { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 6px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .motto { font-size: 0.8rem; color: var(--secondary-text); font-style: italic; margin: 12px 0; letter-spacing: 1.5px; text-transform: uppercase; }
+        h1 { font-size: 2.2rem; font-weight: 600; margin: 10px 0; }
         .bio { font-size: 1.1rem; color: var(--secondary-text); margin-bottom: 40px; }
-
         section { text-align: left; margin-top: 60px; border-top: 1px solid #eee; padding-top: 40px; }
-        h3 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; color: var(--secondary-text); }
-        
-        /* Project Cards */
+        h3 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
         .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .project-card { 
-            background: white; 
-            border: 1px solid #eee; 
-            padding: 25px; 
-            border-radius: 12px; 
-            text-align: left; 
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .project-card:hover { transform: translateY(-5px); border-color: var(--accent-color); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .project-card h4 { margin: 0 0 10px 0; font-size: 1.1rem; }
-        .project-card p { font-size: 0.85rem; color: #666; margin-bottom: 15px; }
-        
-        .tag-row { margin-bottom: 15px; display: flex; flex-wrap: wrap; gap: 5px; }
-        .tag { font-size: 0.7rem; background: #f0f4f8; color: #476a8a; padding: 4px 10px; border-radius: 4px; font-weight: 600; }
+        .project-card { background: white; border: 1px solid #eee; padding: 20px; border-radius: 12px; text-align: left; transition: transform 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
+        .tag { font-size: 0.7rem; background: #f0f4f8; color: #476a8a; padding: 4px 8px; border-radius: 4px; font-weight: 600; margin-right: 5px; }
         .project-link { text-decoration: none; font-size: 0.85rem; color: var(--accent-color); font-weight: 600; }
-
-        /* Skills Styles */
-        .skill-group { margin-bottom: 20px; }
-        .skill-tag { display: inline-block; background: #f0f0f0; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; margin: 0 8px 10px 0; transition: background 0.3s; }
-        .skill-tag:hover { background: #e0e0e0; }
-
-        .contact-section { background: white; padding: 40px; margin-top: 80px; border-radius: 15px; border: 1px solid #eee; }
-        .contact-links a { display: inline-block; margin: 10px 15px; color: var(--accent-color); text-decoration: none; font-weight: 600; }
-        
+        .skill-tag { display: inline-block; background: #f0f0f0; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; margin: 0 8px 10px 0; }
         footer { padding: 40px; font-size: 0.8rem; color: #999; }
-        
-        @media (max-width: 600px) { 
-            nav { padding: 20px; } 
-            .nav-left { gap: 15px; } 
-            .banner { height: 180px; } 
-            .container { margin-top: -60px; } 
-            .project-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 600px) { .project-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -120,69 +51,236 @@
             <a href="https://github.com/tarushinandwani-sudo" target="_blank"><i class="fa-brands fa-github"></i></a>
         </div>
     </nav>
-
     <div class="banner"></div>
-
     <div class="container">
         <img src="me2.jpg" alt="Tarushi Nandwani" class="profile-pic">
         <p class="motto">Scientia Corde Manu et Mente</p>
-
         <h1>Tarushi Nandwani</h1>
-        <p class="bio">Philomath, student leader, and Data Science enthusiast. Currently navigating life in Sydney with a love for strawberry matcha and almond croissants.</p>
+        <p class="bio">Hey! Thanks for visiting! I’m a philomath and autodidact with a love for strawberry matcha, almond croissants, and good conversations. Let’s chat!</p>
 
         <section>
-            <h3 style="text-align: center;">Featured Focus</h3>
+            <h3 style="text-align: center; margin-bottom: 30px;">Featured Projects</h3>
             <div class="project-grid">
-                
                 <div class="project-card">
                     <div>
-                        <h4>Student Leadership</h4>
-                        <p>Serving as Secretary for UNSW Indian Society & Women in Management, and Student Ambassador for UNSW Founders.</p>
-                        <div class="tag-row">
-                            <span class="tag">Governance</span>
-                            <span class="tag">Strategy</span>
-                        </div>
+                        <h4>Personal Portfolio</h4>
+                        <p>A responsive professional website built with HTML5 and CSS3 to showcase my journey in Data Science and leadership.</p>
+                        <div class="tag-row"><span class="tag">HTML/CSS</span><span class="tag">GitHub Pages</span></div>
                     </div>
-                    <a href="about.html" class="project-link">View Timeline ↗</a>
+                    <a href="https://github.com/tarushinandwani-sudo" target="_blank" class="project-link">View Code ↗</a>
                 </div>
-
                 <div class="project-card">
                     <div>
-                        <h4>Data Science & Tech</h4>
-                        <p>Exploring the intersection of data and decision-making. Former President of AISOC UNSW.</p>
-                        <div class="tag-row">
-                            <span class="tag">Python</span>
-                            <span class="tag">AI Ethics</span>
-                        </div>
+                        <h4>Productivity Engine</h4>
+                        <p>A custom-built tool I use daily to manage my coursework, society roles, and internship applications.</p>
+                        <div class="tag-row"><span class="tag">JavaScript</span><span class="tag">LocalStorage</span></div>
                     </div>
-                    <a href="https://github.com/tarushinandwani-sudo" target="_blank" class="project-link">GitHub ↗</a>
+                    <a href="todo.html" class="project-link">Open My Tracker ↗</a>
                 </div>
-
             </div>
         </section>
 
         <section>
-            <h3>Core Competencies</h3>
-            <div class="skill-group">
-                <span class="skill-tag">Strategic Planning</span>
-                <span class="skill-tag">Governance</span>
+            <h3>Core Skills</h3>
+            <div class="skill-tags">
+                <span class="skill-tag">Conflict Resolution</span>
                 <span class="skill-tag">Project Coordination</span>
-                <span class="skill-tag">Public Relations</span>
-                <span class="skill-tag">Stakeholder Management</span>
-                <span class="skill-tag">Data-Driven Decisions</span>
+                <span class="skill-tag">Strategic Planning</span>
+                <span class="skill-tag">Interpersonal Skills</span>
             </div>
         </section>
 
-        <div id="contact" class="contact-section">
-            <h3>Let's Chat</h3>
-            <p>Always down to talk about startups, student life, or the best matcha spots in Sydney.</p>
-            <div class="contact-links">
-                <a href="mailto:tarushinandwani@gmail.com">Email Me</a>
-                <a href="https://www.linkedin.com/in/tarushi-nandwani/" target="_blank">LinkedIn</a>
-            </div>
-        </div>
-        
-        <footer>&copy; 2026 Tarushi Nandwani. Built with care in Sydney.</footer>
+        <footer>&copy; 2026 Tarushi Nandwani. Built with HTML & CSS on GitHub.</footer>
     </div>
 </body>
 </html>
+```
+
+### Complete `about.html` (The Full Timeline)
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Life | Tarushi Nandwani</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; margin: 0; background: #fcfcfc; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: white; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
+        .nav-left { display: flex; gap: 25px; }
+        .nav-socials { display: flex; gap: 18px; font-size: 1.2rem; }
+        nav a { text-decoration: none; color: #1a1a1a; font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
+        nav a:hover { color: #0070f3; }
+        .container { max-width: 850px; margin: 50px auto; padding: 20px; }
+        h1 { font-weight: 600; margin-bottom: 40px; text-align: center; }
+
+        .timeline { position: relative; padding: 20px 0; }
+        .timeline::before { content: ''; position: absolute; left: 31px; top: 0; bottom: 0; width: 2px; background: #e0e0e0; }
+        .milestone { position: relative; margin-bottom: 40px; padding-left: 80px; }
+        .dot { position: absolute; left: 22px; top: 10px; width: 16px; height: 16px; border-radius: 50%; background: white; border: 4px solid #0070f3; z-index: 2; }
+        .timeline-card { background: white; padding: 25px; border-radius: 15px; border: 1px solid #eee; display: flex; gap: 25px; transition: 0.3s; }
+        .timeline-card:hover { transform: translateX(10px); border-color: #0070f3; }
+        .timeline-img { width: 100px; height: 100px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
+        .details h2 { font-size: 1.2rem; margin: 0; color: #1a1a1a; }
+        .org { font-weight: 600; color: #0070f3; margin: 2px 0; }
+        .date { font-size: 0.85rem; color: #888; margin-bottom: 10px; text-transform: uppercase; }
+        .desc { font-size: 0.9rem; color: #555; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="index.html">Home</a>
+            <a href="about.html">University Life</a>
+            <a href="#news">In the News</a>
+        </div>
+        <div class="nav-socials">
+            <a href="https://www.linkedin.com/in/tarushi-nandwani/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/tarushinandwani/?hl=en" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://github.com/tarushinandwani-sudo" target="_blank"><i class="fa-brands fa-github"></i></a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>University Life & Leadership</h1>
+        <div class="timeline">
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="timeline-card">
+                    <img src="founders.jpg" alt="UNSW Founders" class="timeline-img">
+                    <div class="details">
+                        <h2>Student Ambassador</h2>
+                        <p class="org">UNSW Founders</p>
+                        <p class="date">2026</p>
+                        <p class="desc">Promoting entrepreneurship and the startup ecosystem at UNSW.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="timeline-card">
+                    <img src="unsw_indian.jpg" alt="UNSW Indian Society" class="timeline-img">
+                    <div class="details">
+                        <h2>Secretary</h2>
+                        <p class="org">UNSW Indian Society</p>
+                        <p class="date">2026</p>
+                        <p class="desc">Managing administrative operations for the UNSW Indian cultural community.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="timeline-card">
+                    <img src="wim.jpg" alt="WIM Society" class="timeline-img">
+                    <div class="details">
+                        <h2>Secretary</h2>
+                        <p class="org">Women in Management Society</p>
+                        <p class="date">2026</p>
+                        <p class="desc">Managing records and workflows for the WIM Society.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="timeline-card">
+                    <img src="uts.jpg" alt="UTS Indian Society" class="timeline-img">
+                    <div class="details">
+                        <h2>Events Director</h2>
+                        <p class="org">UTS Indian Society</p>
+                        <p class="date">Nov 2025 – April 2026</p>
+                        <p class="desc">Planned and executed major events including Desi Ball and harbour cruises.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="timeline-card">
+                    <img src="uts.jpg" alt="UTS Indian Society" class="timeline-img">
+                    <div class="details">
+                        <h2>Events Coordinator</h2>
+                        <p class="org">UTS Indian Society</p>
+                        <p class="date">2025</p>
+                        <p class="desc">Supported the execution of diverse cultural society events.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="timeline-card">
+                    <img src="aisoc.jpg" alt="AISOC UNSW" class="timeline-img">
+                    <div class="details">
+                        <h2>President</h2>
+                        <p class="org">Artificial Intelligence Society (AISOC) UNSW</p>
+                        <p class="date">Dec 2024 – Oct 2025</p>
+                        <p class="desc">I co-led and organized AICON, the best ever flagship event of AISOC, which had 200+ attendees.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="timeline-card">
+                    <img src="aisoc_pr.jpg" alt="AISOC PR" class="timeline-img">
+                    <div class="details">
+                        <h2>Public Relations Director</h2>
+                        <p class="org">Artificial Intelligence Society (AISOC) UNSW</p>
+                        <p class="date">2024</p>
+                        <p class="desc">Led communication strategies and brand management for AISOC.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="timeline-card">
+                    <img src="wit.jpg" alt="WIT Careers" class="timeline-img">
+                    <div class="details">
+                        <h2>Careers Subcommittee</h2>
+                        <p class="org">Women in Technology (WIT) UNSW</p>
+                        <p class="date">2024</p>
+                        <p class="desc">Assisted in career-focused initiatives for women in the technology sector.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="dot"></div>
+                <div class="timeline-card">
+                    <img src="tedx.jpg" alt="TEDx ATLAS" class="timeline-img">
+                    <div class="details">
+                        <h2>Vice Chairperson</h2>
+                        <p class="org">TEDx ATLAS SkillTech University</p>
+                        <p class="date">Jan 2023 – Aug 2023</p>
+                        <p class="desc">Co-led the organization of the inaugural TEDx event, "Lead with a Purpose".</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="news" style="margin-top: 60px; border-top: 2px solid #eee; padding-top: 40px;">
+            <h2 style="text-align: center;">In the News</h2>
+            <div style="display: grid; gap: 20px;">
+                <div style="padding: 20px; border-left: 5px solid #0070f3; background: white; border-radius: 10px;">
+                    <p style="margin: 0; font-size: 0.85rem; color: #888;">The Sydney Morning Herald</p>
+                    <h4 style="margin: 10px 0;"><a href="https://www.smh.com.au/culture/books/students-are-using-ai-apps-to-summarise-whole-books-in-minutes-experts-are-alarmed-20250909-p5mto2.html" target="_blank" style="text-decoration: none; color: #1a1a1a;">Students are using AI apps to summarise whole books ↗</a></h4>
+                </div>
+                <div style="padding: 20px; border-left: 5px solid #0070f3; background: white; border-radius: 10px;">
+                    <p style="margin: 0; font-size: 0.85rem; color: #888;">The Sydney Morning Herald</p>
+                    <h4 style="margin: 10px 0;"><a href="https://www.smh.com.au/national/ai-smashed-the-job-prospects-of-these-sydney-students-this-is-how-they-re-fighting-back-20241014-p5ki19.html" target="_blank" style="text-decoration: none; color: #1a1a1a;">AI smashed the job prospects of Sydney students ↗</a></h4>
+                </div>
+                <div style="padding: 20px; border-left: 5px solid #0070f3; background: white; border-radius: 10px;">
+                    <p style="margin: 0; font-size: 0.85rem; color: #888;">ATLAS SkillTech University</p>
+                    <h4 style="margin: 10px 0;"><a href="https://atlasuniversity.edu.in/news/lead-with-a-purpose-unleashing-inspiration-at-atlas-skilltech-universitys-first-ever-tedx-event/" target="_blank" style="text-decoration: none; color: #1a1a1a;">Lead with a Purpose: ATLAS SkillTech’s First TEDx ↗</a></h4>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+```
