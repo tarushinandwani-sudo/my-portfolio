@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discography | Tarushi Nandwani</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:ital,wght@0,700;1,700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --soft-pink: #fff0f3; --apple-pink: #ffb6c1; --hot-pink: #d63384; --glass: rgba(255, 255, 255, 0.45); }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: linear-gradient(180deg, var(--soft-pink) 0%, #ffdee5 100%); min-height: 100vh; overflow-x: hidden; }
+        .nav-back { position: fixed; top: 20px; left: 20px; z-index: 100; text-decoration: none; color: var(--hot-pink); background: white; padding: 10px 20px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        header { padding: 80px 20px 40px; text-align: center; }
+        header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--hot-pink); margin: 0; }
+        header p { font-family: 'Caveat', cursive; font-size: 1.5rem; }
+
+        .carousel-container { display: flex; overflow-x: auto; padding: 50px 20px; gap: 40px; scrollbar-width: none; }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .album-wrapper { position: relative; min-width: 220px; cursor: pointer; transition: 0.4s; }
+        .vinyl { position: absolute; top: 5px; right: 0; width: 210px; height: 210px; background: radial-gradient(circle, #333 0%, #000 100%); border-radius: 50%; z-index: 1; transition: 0.5s ease-in-out; display: flex; align-items: center; justify-content: center; }
+        .vinyl-label { width: 80px; height: 80px; background: var(--apple-pink); border-radius: 50%; border: 2px solid #222; }
+        .sleeve { position: relative; width: 220px; height: 220px; background: white; z-index: 2; border-radius: 5px; box-shadow: 5px 5px 20px rgba(0,0,0,0.1); overflow: hidden; }
+        .sleeve img { width: 100%; height: 100%; object-fit: cover; }
+        .album-wrapper:hover .vinyl { transform: translateX(100px) rotate(180deg); }
+        .album-info { margin-top: 15px; }
+        .album-info h4 { margin: 0; font-family: 'Playfair Display'; font-size: 1.2rem; }
+        .album-info p { margin: 5px 0; color: var(--hot-pink); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        .globe-container { padding: 60px 20px; text-align: center; }
+        .pink-globe { width: 220px; height: 220px; background: radial-gradient(circle at 30% 30%, #ffdee5, #d63384); border-radius: 50%; margin: 0 auto; box-shadow: 0 0 50px rgba(214, 51, 132, 0.3); animation: rotate 20s linear infinite; position: relative; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .sparkle { position: absolute; width: 8px; height: 8px; background: white; border-radius: 50%; box-shadow: 0 0 10px #fff; animation: glitter 1.5s infinite; }
+        @keyframes glitter { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.5); } }
+
+        .quotes-section { background: var(--glass); backdrop-filter: blur(10px); padding: 60px 20px; text-align: center; margin: 40px 0; }
+        .quote-text { font-family: 'Playfair Display'; font-style: italic; font-size: 1.8rem; max-width: 700px; margin: 0 auto; color: #444; }
+        .music-section { margin: 60px auto; max-width: 500px; padding: 20px; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="nav-back"><i class="fas fa-chevron-left"></i> Library</a>
+    <header><p>Now Playing</p><h1>Tarushi's Discography</h1></header>
+    <div class="carousel-container">
+        <div class="album-wrapper"> <div class="vinyl"><div class="vinyl-label"></div></div> <div class="sleeve"><img src="anthology_cover.jpg"></div> <div class="album-info"><h4>The Anthology</h4><p>Year 1: 2024</p></div> </div>
+        <div class="album-wrapper"> <div class="vinyl"><div class="vinyl-label"></div></div> <div class="sleeve"><img src="midnights_cover.jpg"></div> <div class="album-info"><h4>Midnights</h4><p>Year 2: 2025</p></div> </div>
+        <div class="album-wrapper"> <div class="vinyl"><div class="vinyl-label"></div></div> <div class="sleeve"><img src="visions_cover.jpg"></div> <div class="album-info"><h4>Visions</h4><p>Year 3: 2026/27</p></div> </div>
+        <a href="about.html" style="text-decoration:none; color:inherit;"><div class="album-wrapper"> <div class="vinyl"><div class="vinyl-label"></div></div> <div class="sleeve"><img src="renaissance_cover.jpg"></div> <div class="album-info"><h4>Renaissance</h4><p>Societies & News</p></div> </div></a>
+    </div>
+    <section class="quotes-section"> <div class="quote-text">"Empowered women empower the world."</div><p style="color:var(--hot-pink); font-weight:600; margin-top:20px;">Advocacy • Humanitarianism • Change</p> </section>
+    <section class="globe-container"> <h2>World Tour</h2> <div class="pink-globe"> <div class="sparkle" style="top:60%; left:70%;"></div> <div class="sparkle" style="top:40%; left:60%;"></div> <div class="sparkle" style="top:50%; left:30%;"></div> </div> <p style="font-family:'Caveat'; font-size:1.4rem; margin-top:20px;">Sparkling: India, UAE, Hong Kong, Sydney</p> </section>
+    <section class="music-section"> <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6sGIMrtIzQjdzNndVxe397?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> </section>
+</body>
+</html>
