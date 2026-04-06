@@ -7,165 +7,209 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-    <script src="//unpkg.com/globe.gl"></script> <style>
+    
+    <script src="//unpkg.com/three"></script>
+    <script src="//unpkg.com/globe.gl"></script>
+
+    <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #fff5f7 0%, #ffdee5 100%);
-            --apple-pink: #ffb6c1;
+            --soft-pink: #fff5f7;
             --hot-pink: #d63384;
-            --glass: rgba(255, 255, 255, 0.7);
+            --apple-pink: #ffb6c1;
+            --glass: rgba(255, 255, 255, 0.8);
         }
 
         body {
             margin: 0; font-family: 'Poppins', sans-serif;
-            background: var(--bg-gradient); color: #1a1a1a;
-            overflow-x: hidden; text-align: center;
+            background: linear-gradient(135deg, var(--soft-pink) 0%, #ffdee5 100%);
+            color: #1a1a1a; overflow-x: hidden;
         }
 
-        /* Nav */
-        .nav-back { position: absolute; top: 30px; left: 30px; text-decoration: none; color: var(--hot-pink); font-weight: 600; z-index: 100; }
+        header { padding: 80px 20px 20px; text-align: center; }
+        header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--hot-pink); margin: 0; }
 
-        header { padding: 100px 20px 40px; }
-        header h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin: 0; color: var(--hot-pink); }
-        
-        /* Vinyl Section */
-        .vinyl-crate {
-            display: flex; justify-content: center; gap: 50px;
-            padding: 40px; flex-wrap: wrap;
+        /* The Vinyl Crate Grid */
+        .crate {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px; max-width: 1100px; margin: 40px auto; padding: 20px;
         }
 
-        .album-container { width: 200px; cursor: pointer; perspective: 1000px; }
+        .album { cursor: pointer; transition: 0.3s; position: relative; }
         .sleeve {
-            width: 200px; height: 200px; background: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-radius: 4px; overflow: hidden; position: relative; z-index: 2;
+            width: 100%; aspect-ratio: 1/1; background: white;
+            border-radius: 4px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden; position: relative; z-index: 2;
         }
         .sleeve img { width: 100%; height: 100%; object-fit: cover; }
         
-        .vinyl-disc {
-            position: absolute; top: 5px; right: -20px;
-            width: 190px; height: 190px; background: radial-gradient(circle, #333 0%, #000 100%);
+        /* Vinyl sliding out */
+        .vinyl {
+            position: absolute; top: 5px; right: 0; width: 95%; height: 95%;
+            background: radial-gradient(circle, #333 0%, #000 100%);
             border-radius: 50%; z-index: 1; transition: 0.5s ease;
         }
-        .album-container:hover .vinyl-disc { right: -100px; transform: rotate(90deg); }
+        .album:hover .vinyl { right: -60px; transform: rotate(45deg); }
+        .album:hover { transform: translateY(-10px); }
 
-        /* Real 3D Globe */
-        #globeViz { height: 500px; width: 100%; margin: 50px 0; }
+        .album h3 { font-size: 1rem; margin: 15px 0 5px; font-family: 'Playfair Display'; }
+        .album p { font-size: 0.75rem; color: var(--hot-pink); text-transform: uppercase; margin: 0; }
 
-        /* Mini Music Player */
-        .music-widget {
-            position: fixed; bottom: 20px; right: 20px;
-            width: 300px; z-index: 1000; transition: 0.3s;
-        }
-        .widget-toggle {
-            background: var(--hot-pink); color: white; width: 40px; height: 40px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; margin-left: auto; margin-bottom: 10px;
-        }
-
-        /* Modal / Pop-up for Album Info */
+        /* Modal (Folder) System */
         .modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); z-index: 2000;
-            justify-content: center; align-items: center;
+            background: var(--glass); backdrop-filter: blur(15px); z-index: 2000;
         }
         .modal-content {
-            background: white; padding: 40px; border-radius: 25px;
-            max-width: 500px; width: 90%; text-align: left;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: white; padding: 40px; border-radius: 30px;
+            width: 80%; max-width: 600px; box-shadow: 0 25px 50px rgba(0,0,0,0.1);
         }
-        .close-modal { float: right; cursor: pointer; font-size: 1.5rem; color: var(--hot-pink); }
+        .close { position: absolute; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; color: var(--hot-pink); }
 
-        h2 { font-family: 'Playfair Display', serif; color: var(--hot-pink); }
+        /* Full Screen Globe Container */
+        #globeModal { background: #fff5f7; }
+        #globeViz { width: 100vw; height: 80vh; cursor: grab; }
+
+        /* Mini Music Widget */
+        .music-widget {
+            position: fixed; bottom: 20px; left: 20px; z-index: 3000;
+            background: white; padding: 10px; border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 10px;
+        }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> LIBRARY</a>
-
     <header>
-        <h1>Visions & Eras</h1>
-        <p style="letter-spacing: 3px; font-weight: 300;">THE DISCOGRAPHY OF TARUSHI NANDWANI</p>
+        <h1>Tarushi's Discography</h1>
+        <p style="font-weight: 300; letter-spacing: 2px;">SCIENTIA CORDE MANU ET MENTE</p>
     </header>
 
-    <div class="vinyl-crate">
-        <div class="album-container" onclick="openModal('anthology')">
-            <div class="vinyl-disc"></div>
+    <div class="crate">
+        <div class="album" onclick="openModal('freshman')">
+            <div class="vinyl"></div>
             <div class="sleeve"><img src="anthology_cover.jpg"></div>
-            <h3>The Anthology</h3>
+            <h3>The Anthology</h3><p>Foundation & Beginnings</p>
         </div>
-        <div class="album-container" onclick="openModal('midnights')">
-            <div class="vinyl-disc"></div>
+        <div class="album" onclick="openModal('sophomore')">
+            <div class="vinyl"></div>
             <div class="sleeve"><img src="midnights_cover.jpg"></div>
-            <h3>Midnights</h3>
+            <h3>Midnights</h3><p>Leadership & Coding</p>
         </div>
-        <div class="album-container" onclick="openModal('visions')">
-            <div class="vinyl-disc"></div>
+        <div class="album" onclick="openModal('junior')">
+            <div class="vinyl"></div>
             <div class="sleeve"><img src="visions_cover.jpg"></div>
-            <h3>Visions</h3>
+            <h3>Visions</h3><p>Data Science & Mission</p>
+        </div>
+        <div class="album" onclick="openGlobe()">
+            <div class="vinyl" style="background: var(--apple-pink) !important;"></div>
+            <div class="sleeve" style="background: var(--hot-pink); display: flex; align-items: center; justify-content: center; color: white;">
+                <i class="fas fa-globe-americas fa-4x"></i>
+            </div>
+            <h3>World Tour</h3><p>Travels & Wishlist</p>
+        </div>
+        <div class="album" onclick="window.location.href='about.html'">
+            <div class="vinyl"></div>
+            <div class="sleeve"><img src="renaissance_cover.jpg"></div>
+            <h3>Renaissance</h3><p>Leadership & Impact</p>
+        </div>
+        <div class="album" onclick="openModal('babel')">
+            <div class="vinyl"></div>
+            <div class="sleeve"><img src="babel_cover.jpg"></div>
+            <h3>Babel</h3><p>6 Languages, 1 Story</p>
+        </div>
+        <div class="album" onclick="openModal('golden')">
+            <div class="vinyl"></div>
+            <div class="sleeve"><img src="golden_cover.jpg"></div>
+            <h3>Golden</h3><p>Advocacy & Feminism</p>
         </div>
     </div>
 
-    <section>
-        <h2 style="font-size: 2.5rem;">World Tour</h2>
-        <div id="globeViz"></div> </section>
-
-    <div id="albumModal" class="modal">
+    <div id="infoModal" class="modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle">Album Name</h2>
+            <span class="close" onclick="closeModal()">&times;</span>
             <div id="modalBody"></div>
         </div>
     </div>
 
-    <div class="music-widget" id="musicWidget">
-        <div class="widget-toggle" onclick="toggleMusic()"><i class="fas fa-music"></i></div>
-        <div id="playerFrame">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6sGIMrtIzQjdzNndVxe397?utm_source=generator" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <div id="globeModal" class="modal">
+        <span class="close" onclick="closeGlobe()" style="z-index: 3001;">&times;</span>
+        <h2 style="text-align: center; margin-top: 50px; font-family: 'Playfair Display';">Tarushi's World Tour</h2>
+        <div id="globeViz"></div>
+        <p style="text-align: center; font-size: 0.8rem; color: #d63384;">SPARKLY: India, UAE, Hong Kong, Sydney</p>
+    </div>
+
+    <div class="music-widget">
+        <button onclick="toggleMusic()" style="border:none; background:var(--hot-pink); color:white; border-radius:50%; width:30px; height:30px; cursor:pointer;"><i class="fas fa-pause" id="playIcon"></i></button>
+        <div id="spotifyEmbed" style="width: 250px; height: 80px;">
+            <iframe src="https://open.spotify.com/embed/track/YOUR_TRACK_ID?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         </div>
     </div>
 
     <script>
-        // 1. DATA FOR MODALS
-        const albumData = {
-            anthology: "<h2>Tracklist - Year 1</h2><ul><li>Foundation in Data Science</li><li>Moving to Sydney Era</li><li>TEDx Vice Chairperson Legacy</li></ul>",
-            midnights: "<h2>Tracklist - Year 2</h2><ul><li>AISOC Presidency Era</li><li>Lead AICON Flagship</li><li>Data Decision Architect</li></ul>",
-            visions: "<h2>Tracklist - Final Year</h2><ul><li>UNSW Founders Ambassador</li><li>Secretary of WIM & Indian Society</li><li>Final Research Projects</li></ul>"
+        const content = {
+            freshman: "<h2>The Anthology</h2><p><b>Year 1 at UNSW</b><br>Establishing the foundation of my Data Science journey and settling into the Sydney era.</p>",
+            sophomore: "<h2>Midnights</h2><p><b>Year 2</b><br>Leading AISOC as President and organizing the first-ever AICON flagship conference.</p>",
+            junior: "<h2>Visions</h2><p><b>Final Year</b><br>Current focus on UNSW Founders and Secretary roles. Graduation loading...</p>",
+            babel: "<h2>Babel</h2><p>Proficient in 6 languages: English, Hindi, Sindhi, Punjabi, French, and Chinese.</p>",
+            golden: "<h2>Golden</h2><p>A carousel of beliefs focused on Women Empowerment, Humanitarianism, and Advocacy.</p>"
         };
 
-        function openModal(id) {
-            document.getElementById('modalBody').innerHTML = albumData[id];
-            document.getElementById('albumModal').style.display = 'flex';
+        function openModal(key) {
+            document.getElementById('modalBody').innerHTML = content[key];
+            document.getElementById('infoModal').style.display = 'block';
         }
-        function closeModal() { document.getElementById('albumModal').style.display = 'none'; }
+        function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
 
-        // 2. TOGGLE MUSIC
+        function openGlobe() {
+            document.getElementById('globeModal').style.display = 'block';
+            initGlobe();
+        }
+        function closeGlobe() { document.getElementById('globeModal').style.display = 'none'; }
+
+        function initGlobe() {
+            const sparkles = [
+                { lat: 20.59, lng: 78.96, name: 'India' },
+                { lat: 24.45, lng: 54.37, name: 'UAE' },
+                { lat: 22.31, lng: 114.16, name: 'Hong Kong' },
+                { lat: -33.86, lng: 151.20, name: 'Sydney' }
+            ];
+
+            const world = Globe()
+                (document.getElementById('globeViz'))
+                .globeImageUrl('//unpkg.com/three-globe/example/img/earth-light.jpg') // Lighter map for pink tint
+                .backgroundColor('rgba(0,0,0,0)')
+                .ringsData(sparkles)
+                .ringColor(() => '#d63384')
+                .ringMaxRadius(5)
+                .ringPropagationSpeed(3)
+                .ringRepeatPeriod(1000)
+                .autoRotate(true)
+                .autoRotateSpeed(1.2)
+                (document.getElementById('globeViz'));
+
+            world.controls().autoRotate = true;
+            world.controls().enableZoom = false; // Smooths it out
+            
+            // Apply Pink Tint to the material
+            const globeMaterial = world.globeMaterial();
+            globeMaterial.color = new THREE.Color('#ffb6c1');
+            globeMaterial.emissive = new THREE.Color('#fff0f3');
+            globeMaterial.emissiveIntensity = 0.2;
+        }
+
         function toggleMusic() {
-            const frame = document.getElementById('playerFrame');
-            frame.style.display = frame.style.display === 'none' ? 'block' : 'none';
+            const player = document.getElementById('spotifyEmbed');
+            const icon = document.getElementById('playIcon');
+            if (player.style.display === 'none') {
+                player.style.display = 'block';
+                icon.className = 'fas fa-pause';
+            } else {
+                player.style.display = 'none';
+                icon.className = 'fas fa-play';
+            }
         }
-
-        // 3. THE REAL 3D GLOBE
-        const myData = [
-            { lat: 20.5937, lng: 78.9629, name: 'India', size: 0.5 },
-            { lat: 23.4241, lng: 53.8478, name: 'UAE', size: 0.5 },
-            { lat: 22.3193, lng: 114.1694, name: 'Hong Kong', size: 0.5 },
-            { lat: -33.8688, lng: 151.2093, name: 'Sydney', size: 0.5 }
-        ];
-
-        Globe()
-            (document.getElementById('globeViz'))
-            .globeImageUrl('//unpkg.com/three-globe/example/img/earth-day.jpg') // Base map
-            .backgroundColor('rgba(0,0,0,0)') // Transparent
-            .pointColor(() => '#d63384') // Pink sparkly points
-            .pointsData(myData)
-            .pointAltitude('size')
-            .pointRadius(0.3)
-            .pointLabel('name')
-            .onPointClick(d => window.alert(d.name))
-            .showAtmosphere(true)
-            .atmosphereColor('#ffb6c1')
-            (document.getElementById('globeViz'));
     </script>
-
 </body>
 </html>
