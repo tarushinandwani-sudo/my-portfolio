@@ -6,209 +6,160 @@
     <title>Discography | Tarushi Nandwani</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="//unpkg.com/three"></script>
     <script src="//unpkg.com/globe.gl"></script>
 
     <style>
-        :root {
-            --soft-pink: #fff5f7;
-            --hot-pink: #d63384;
-            --apple-pink: #ffb6c1;
-            --glass: rgba(255, 255, 255, 0.8);
+        :root { --hot-pink: #d63384; --soft-pink: #ffdee5; --glass: rgba(255, 255, 255, 0.2); }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: 'Poppins', sans-serif; background: #000; color: white; overflow: hidden; }
+
+        /* Navigation */
+        .nav-back { position: fixed; top: 20px; left: 20px; z-index: 1000; color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; letter-spacing: 2px; }
+
+        /* The Turntable Section */
+        #player-zone {
+            height: 60vh; width: 100%; display: flex; align-items: center; justify-content: center;
+            position: relative; transition: 1s ease;
         }
 
-        body {
-            margin: 0; font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--soft-pink) 0%, #ffdee5 100%);
-            color: #1a1a1a; overflow-x: hidden;
+        .turntable {
+            width: 300px; height: 300px; background: #222; border-radius: 50%;
+            border: 10px solid #333; position: relative; box-shadow: 0 0 50px rgba(0,0,0,0.5);
         }
 
-        header { padding: 80px 20px 20px; text-align: center; }
-        header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--hot-pink); margin: 0; }
-
-        /* The Vinyl Crate Grid */
-        .crate {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px; max-width: 1100px; margin: 40px auto; padding: 20px;
+        .needle {
+            position: absolute; top: -20px; right: -40px; width: 120px; height: 10px;
+            background: #666; transform-origin: left; transform: rotate(45deg);
+            transition: 0.5s; z-index: 10;
         }
 
-        .album { cursor: pointer; transition: 0.3s; position: relative; }
-        .sleeve {
-            width: 100%; aspect-ratio: 1/1; background: white;
-            border-radius: 4px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            overflow: hidden; position: relative; z-index: 2;
+        /* The Records in the Crate */
+        #crate {
+            height: 40vh; width: 100%; background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px); display: flex; align-items: center; 
+            justify-content: center; gap: 30px; padding: 20px; box-sizing: border-box;
         }
-        .sleeve img { width: 100%; height: 100%; object-fit: cover; }
-        
-        /* Vinyl sliding out */
+
         .vinyl {
-            position: absolute; top: 5px; right: 0; width: 95%; height: 95%;
-            background: radial-gradient(circle, #333 0%, #000 100%);
-            border-radius: 50%; z-index: 1; transition: 0.5s ease;
+            width: 180px; height: 180px; background: radial-gradient(circle, #333 0%, #000 100%);
+            border-radius: 50%; cursor: pointer; position: relative;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.3s;
         }
-        .album:hover .vinyl { right: -60px; transform: rotate(45deg); }
-        .album:hover { transform: translateY(-10px); }
+        .vinyl:hover { transform: translateY(-20px); }
+        .vinyl::after { content: ''; width: 60px; height: 60px; border-radius: 50%; background: var(--hot-pink); border: 2px solid #111; }
+        
+        .label-text { position: absolute; bottom: -30px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--soft-pink); }
 
-        .album h3 { font-size: 1rem; margin: 15px 0 5px; font-family: 'Playfair Display'; }
-        .album p { font-size: 0.75rem; color: var(--hot-pink); text-transform: uppercase; margin: 0; }
-
-        /* Modal (Folder) System */
-        .modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--glass); backdrop-filter: blur(15px); z-index: 2000;
+        /* Globe Section (Hidden initially) */
+        #globe-section {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #4b0082, #000);
+            display: none; opacity: 0; z-index: 500;
         }
-        .modal-content {
-            position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: white; padding: 40px; border-radius: 30px;
-            width: 80%; max-width: 600px; box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-        }
-        .close { position: absolute; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; color: var(--hot-pink); }
 
-        /* Full Screen Globe Container */
-        #globeModal { background: #fff5f7; }
-        #globeViz { width: 100vw; height: 80vh; cursor: grab; }
+        /* Spotify Widget */
+        #music-box { position: fixed; bottom: 20px; right: 20px; width: 300px; z-index: 2000; opacity: 0; transform: translateY(20px); transition: 0.5s; }
 
-        /* Mini Music Widget */
-        .music-widget {
-            position: fixed; bottom: 20px; left: 20px; z-index: 3000;
-            background: white; padding: 10px; border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 10px;
+        /* Tooltip */
+        #location-tag {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -100%);
+            background: var(--hot-pink); padding: 5px 15px; border-radius: 20px;
+            font-weight: 600; display: none; z-index: 2001; pointer-events: none;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Tarushi's Discography</h1>
-        <p style="font-weight: 300; letter-spacing: 2px;">SCIENTIA CORDE MANU ET MENTE</p>
-    </header>
+    <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> LIBRARY</a>
+    <div id="location-tag">Sydney: I'm Here!</div>
 
-    <div class="crate">
-        <div class="album" onclick="openModal('freshman')">
-            <div class="vinyl"></div>
-            <div class="sleeve"><img src="anthology_cover.jpg"></div>
-            <h3>The Anthology</h3><p>Foundation & Beginnings</p>
-        </div>
-        <div class="album" onclick="openModal('sophomore')">
-            <div class="vinyl"></div>
-            <div class="sleeve"><img src="midnights_cover.jpg"></div>
-            <h3>Midnights</h3><p>Leadership & Coding</p>
-        </div>
-        <div class="album" onclick="openModal('junior')">
-            <div class="vinyl"></div>
-            <div class="sleeve"><img src="visions_cover.jpg"></div>
-            <h3>Visions</h3><p>Data Science & Mission</p>
-        </div>
-        <div class="album" onclick="openGlobe()">
-            <div class="vinyl" style="background: var(--apple-pink) !important;"></div>
-            <div class="sleeve" style="background: var(--hot-pink); display: flex; align-items: center; justify-content: center; color: white;">
-                <i class="fas fa-globe-americas fa-4x"></i>
+    <div id="player-zone">
+        <div class="turntable">
+            <div class="needle" id="needle"></div>
             </div>
-            <h3>World Tour</h3><p>Travels & Wishlist</p>
-        </div>
-        <div class="album" onclick="window.location.href='about.html'">
-            <div class="vinyl"></div>
-            <div class="sleeve"><img src="renaissance_cover.jpg"></div>
-            <h3>Renaissance</h3><p>Leadership & Impact</p>
-        </div>
-        <div class="album" onclick="openModal('babel')">
-            <div class="vinyl"></div>
-            <div class="sleeve"><img src="babel_cover.jpg"></div>
-            <h3>Babel</h3><p>6 Languages, 1 Story</p>
-        </div>
-        <div class="album" onclick="openModal('golden')">
-            <div class="vinyl"></div>
-            <div class="sleeve"><img src="golden_cover.jpg"></div>
-            <h3>Golden</h3><p>Advocacy & Feminism</p>
-        </div>
+        <h2 id="era-title" style="position: absolute; bottom: 20px; font-family: 'Playfair Display'; font-size: 2.5rem;">Pick an Era</h2>
     </div>
 
-    <div id="infoModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div id="modalBody"></div>
-        </div>
+    <div id="crate">
+        <div class="vinyl" onclick="playEra('Anthology', 'freshman')"><span class="label-text">The Anthology</span></div>
+        <div class="vinyl" onclick="playEra('Midnights', 'sophomore')"><span class="label-text">Midnights</span></div>
+        <div class="vinyl" onclick="playEra('Visions', 'junior')"><span class="label-text">Visions</span></div>
+        <div class="vinyl" onclick="playEra('World Tour', 'globe')"><span class="label-text">World Tour</span></div>
     </div>
 
-    <div id="globeModal" class="modal">
-        <span class="close" onclick="closeGlobe()" style="z-index: 3001;">&times;</span>
-        <h2 style="text-align: center; margin-top: 50px; font-family: 'Playfair Display';">Tarushi's World Tour</h2>
+    <div id="globe-section">
         <div id="globeViz"></div>
-        <p style="text-align: center; font-size: 0.8rem; color: #d63384;">SPARKLY: India, UAE, Hong Kong, Sydney</p>
+        <button onclick="stopEra()" style="position:fixed; top:20px; right:20px; background:none; border:1px solid white; color:white; padding:10px 20px; border-radius:50px; cursor:pointer; z-index:1000;">CLOSE ERA</button>
     </div>
 
-    <div class="music-widget">
-        <button onclick="toggleMusic()" style="border:none; background:var(--hot-pink); color:white; border-radius:50%; width:30px; height:30px; cursor:pointer;"><i class="fas fa-pause" id="playIcon"></i></button>
-        <div id="spotifyEmbed" style="width: 250px; height: 80px;">
-            <iframe src="https://open.spotify.com/embed/track/YOUR_TRACK_ID?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-        </div>
+    <div id="music-box">
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/6sGIMrtIzQjdzNndVxe397?utm_source=generator" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
     </div>
 
     <script>
-        const content = {
-            freshman: "<h2>The Anthology</h2><p><b>Year 1 at UNSW</b><br>Establishing the foundation of my Data Science journey and settling into the Sydney era.</p>",
-            sophomore: "<h2>Midnights</h2><p><b>Year 2</b><br>Leading AISOC as President and organizing the first-ever AICON flagship conference.</p>",
-            junior: "<h2>Visions</h2><p><b>Final Year</b><br>Current focus on UNSW Founders and Secretary roles. Graduation loading...</p>",
-            babel: "<h2>Babel</h2><p>Proficient in 6 languages: English, Hindi, Sindhi, Punjabi, French, and Chinese.</p>",
-            golden: "<h2>Golden</h2><p>A carousel of beliefs focused on Women Empowerment, Humanitarianism, and Advocacy.</p>"
-        };
+        let globe;
 
-        function openModal(key) {
-            document.getElementById('modalBody').innerHTML = content[key];
-            document.getElementById('infoModal').style.display = 'block';
-        }
-        function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
+        function playEra(name, type) {
+            // 1. Animation: Needle moves
+            gsap.to("#needle", { rotation: 15, duration: 0.5 });
+            document.getElementById('era-title').innerText = name;
 
-        function openGlobe() {
-            document.getElementById('globeModal').style.display = 'block';
-            initGlobe();
+            // 2. Music fades in
+            gsap.to("#music-box", { opacity: 1, y: 0, duration: 1 });
+
+            // 3. If Globe, morph to 3D section
+            if (type === 'globe') {
+                document.getElementById('globe-section').style.display = 'block';
+                gsap.to("#globe-section", { opacity: 1, duration: 1.5, onComplete: initGlobe });
+            }
         }
-        function closeGlobe() { document.getElementById('globeModal').style.display = 'none'; }
+
+        function stopEra() {
+            gsap.to("#globe-section", { opacity: 0, duration: 0.5, onComplete: () => {
+                document.getElementById('globe-section').style.display = 'none';
+                gsap.to("#needle", { rotation: 45, duration: 0.5 });
+            }});
+        }
 
         function initGlobe() {
-            const sparkles = [
+            const places = [
                 { lat: 20.59, lng: 78.96, name: 'India' },
                 { lat: 24.45, lng: 54.37, name: 'UAE' },
                 { lat: 22.31, lng: 114.16, name: 'Hong Kong' },
                 { lat: -33.86, lng: 151.20, name: 'Sydney' }
             ];
 
-            const world = Globe()
+            globe = Globe()
                 (document.getElementById('globeViz'))
-                .globeImageUrl('//unpkg.com/three-globe/example/img/earth-light.jpg') // Lighter map for pink tint
+                .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
                 .backgroundColor('rgba(0,0,0,0)')
-                .ringsData(sparkles)
-                .ringColor(() => '#d63384')
-                .ringMaxRadius(5)
-                .ringPropagationSpeed(3)
-                .ringRepeatPeriod(1000)
+                .pointsData(places)
+                .pointColor(() => '#d63384')
+                .pointRadius(0.5)
+                .pointLabel('name')
+                .onPointHover((point) => {
+                    const tag = document.getElementById('location-tag');
+                    if (point && point.name === 'Sydney') {
+                        tag.style.display = 'block';
+                    } else {
+                        tag.style.display = 'none';
+                    }
+                })
                 .autoRotate(true)
-                .autoRotateSpeed(1.2)
+                .autoRotateSpeed(1.5)
                 (document.getElementById('globeViz'));
 
-            world.controls().autoRotate = true;
-            world.controls().enableZoom = false; // Smooths it out
-            
-            // Apply Pink Tint to the material
-            const globeMaterial = world.globeMaterial();
-            globeMaterial.color = new THREE.Color('#ffb6c1');
-            globeMaterial.emissive = new THREE.Color('#fff0f3');
-            globeMaterial.emissiveIntensity = 0.2;
-        }
+            // Set the Dark Pink Aesthetic
+            const globeMaterial = globe.globeMaterial();
+            globeMaterial.color = new THREE.Color('#3b0d24'); // Deepest Pink-Black
+            globeMaterial.emissive = new THREE.Color('#d63384');
+            globeMaterial.emissiveIntensity = 0.1;
 
-        function toggleMusic() {
-            const player = document.getElementById('spotifyEmbed');
-            const icon = document.getElementById('playIcon');
-            if (player.style.display === 'none') {
-                player.style.display = 'block';
-                icon.className = 'fas fa-pause';
-            } else {
-                player.style.display = 'none';
-                icon.className = 'fas fa-play';
-            }
+            // Highlight Sydney specifically
+            globe.pointAltitude(d => d.name === 'Sydney' ? 0.1 : 0.02);
         }
     </script>
 </body>
